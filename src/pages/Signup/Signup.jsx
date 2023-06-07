@@ -4,16 +4,18 @@ import signupImg from '../../assets/signupImg.png'
 import Container from "../../components/Container/Container";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
 
-const image_hosting_server_url = import.meta.env.VITE_IMAGE_HOSTING_TOKEN
+const image_hosting_server_url_key = import.meta.env.VITE_IMAGE_HOSTING_SERVER_API
+const image_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_server_url_key}`
 
 const Signup = () => {
 
     const [showPassword, setShowPassword] = useState(false)
     const [error, setError] = useState('')
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const { createUser, userProfileUpdate } = useAuth()
 
-    const image_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_url_server}`
 
     const onSubmit = data => {
         setError('')
@@ -23,12 +25,32 @@ const Signup = () => {
         }
 
         const formData = new FormData()
-        formData.append('image', data.image[0])
+        formData.append('image', data.photo[0])
+
         fetch(image_hosting_url, {
             method: 'POST',
             body: formData
         })
+            .then(res => res.json())
+            .then(imageData => {
+                const photoURL = imageData.data.display_url;
 
+                createUser(data.email, data.password)
+                    .then(result => {
+                        const createdUser = result.user;
+                        userProfileUpdate(data.name, photoURL)
+                            .then(() => {
+                                // sending user info into database
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            })
+                    })
+                    .catch(error => {
+                        console.log(error.message);
+                    })
+
+            })
     };
 
     return (
