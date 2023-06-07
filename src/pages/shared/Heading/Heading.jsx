@@ -3,6 +3,7 @@ import logo from '../../../assets/easy-moves.png'
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { RxCross1 } from 'react-icons/rx';
 
 const Heading = () => {
 
@@ -33,12 +34,14 @@ const Heading = () => {
                     </div>
                     <div className="md:hidden text-3xl flex items-center">
                         <button onClick={toggleMenu}>
-                            <GiHamburgerMenu />
+                            {
+                                menuOpen ? <RxCross1 /> : <GiHamburgerMenu />
+                            }
                         </button>
                     </div>
                 </div>
                 {/* dropdown menu */}
-                <div className={`flex flex-col space-y-2 text-right absolute right-4 top-20 md:hidden ${menuOpen ? 'block' : 'hidden'}`}>
+                <div className={`bg-white py-2 px-4 rounded-md  flex flex-col space-y-2 text-right absolute right-4 top-16 md:hidden ${menuOpen ? 'block' : 'hidden'}`}>
                     {menuItems}
                 </div>
             </Container>

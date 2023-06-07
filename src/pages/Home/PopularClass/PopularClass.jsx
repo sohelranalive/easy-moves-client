@@ -5,8 +5,8 @@ const PopularClass = () => {
     return (
         <div className="bg-slate-900 h-[500px]">
             <Container>
-                <div className="border text-white">
-                    <SectionTittle className></SectionTittle>
+                <div className="text-white">
+                    <SectionTittle heading="Popular Classes" subHeading="We have more a total of 10 classes at this moment. Explore our most popular classes among them"></SectionTittle>
                 </div>
             </Container>
         </div>

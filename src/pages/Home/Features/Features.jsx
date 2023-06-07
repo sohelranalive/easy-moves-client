@@ -30,7 +30,7 @@ const Features = () => {
     return (
         <div className="bg-transparent -mt-32">
             <Container>
-                <div className="border">
+                <div className="">
                     <Swiper
                         breakpoints={breakpoints}
                         spaceBetween={30}
