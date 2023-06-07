@@ -3,8 +3,22 @@
 @tailwind utilities;
 
 * {
-  font-family: 'Oswald', sans-serif;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   margin: 0px;
   padding: 0px;
+}
+
+.b-active {
+  color: #AB1318;
+
+}
+
+.b-active:hover {}
+
+.b-default {
+  color: #0F172A;
+}
+
+.b-default:hover {
+  color: #AB1318;
 }

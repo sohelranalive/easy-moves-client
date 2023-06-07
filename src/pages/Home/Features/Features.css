@@ -1,0 +1,15 @@
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mySwiper {
+    padding: 50px 0px;
+}
+
+.mySwiper .swiper-pagination-bullet-active {
+    background-color: #AB1318;
+}
