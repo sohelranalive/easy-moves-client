@@ -13,11 +13,11 @@ const Heading = () => {
     const { user } = useAuth()
 
     const menuItems = <>
-        <NavLink to='/' className={({ isActive }) => (isActive ? 'b-active' : 'b-default')}>Home</NavLink>
-        <NavLink to='/instructors' className={({ isActive }) => (isActive ? 'b-active' : 'b-default')}>Instructors</NavLink>
-        <NavLink to='/classes' className={({ isActive }) => (isActive ? 'b-active' : 'b-default')}>Classes</NavLink>
-        <NavLink to='/dashboard' className={({ isActive }) => (isActive ? 'b-active' : 'b-default')}>Dashboard</NavLink>
-        <NavLink>
+        <li><NavLink to='/' className={({ isActive }) => (isActive ? 'b-active' : 'b-default')}>Home</NavLink></li>
+        <li><NavLink to='/instructors' className={({ isActive }) => (isActive ? 'b-active' : 'b-default')}>Instructors</NavLink></li>
+        <li><NavLink to='/classes' className={({ isActive }) => (isActive ? 'b-active' : 'b-default')}>Classes</NavLink></li>
+        <li><NavLink to='/dashboard' className={({ isActive }) => (isActive ? 'b-active' : 'b-default')}>Dashboard</NavLink></li>
+        <li><NavLink>
             {!user
                 ?
                 <div className='flex items-center space-x-4'>
@@ -38,7 +38,7 @@ const Heading = () => {
                     <NavLink to='/login' className=" bg-[#AB1318] py-2 px-3 rounded-lg text-white">Login</NavLink>
                 </div>
             }
-        </NavLink>
+        </NavLink></li>
     </>
 
     const [menuOpen, setMenuOpen] = useState(false)
@@ -55,8 +55,10 @@ const Heading = () => {
                         <img src={logo} alt="logo" height={70} width={70} />
                         <h1 className="ms-4 text-4xl font-bold">Easy<span className="text-[#AB1318]">Moves</span></h1>
                     </div>
-                    <div className="hidden md:inline-flex items-center space-x-4 font-bold">
-                        {menuItems}
+                    <div>
+                        <ul className="hidden md:inline-flex items-center space-x-4 font-bold">
+                            {menuItems}
+                        </ul>
                     </div>
                     <div className="md:hidden text-3xl flex items-center">
                         <button onClick={toggleMenu}>
@@ -67,8 +69,10 @@ const Heading = () => {
                     </div>
                 </div>
                 {/* dropdown menu */}
-                <div className={`bg-white py-4 px-4 rounded-md flex flex-col space-y-4 text-right absolute right-4 top-16 md:hidden ${menuOpen ? 'block' : 'hidden'}`}>
-                    {menuItems}
+                <div>
+                    <ul className={`bg-white py-4 px-4 rounded-md flex flex-col space-y-4 text-right absolute right-4 top-16 md:hidden ${menuOpen ? 'block' : 'hidden'}`}>
+                        {menuItems}
+                    </ul>
                 </div>
             </Container>
         </div>

@@ -1,14 +1,11 @@
 import Container from "../../components/Container/Container";
-import useAuth from "../../hooks/useAuth";
 import Lottie from "lottie-react";
-import loginLottie from "../../assets/29774-dance-party.json";
+import loginLottie from "../../assets/loginImg.json";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FcGoogle } from 'react-icons/fc';
 
 const Login = () => {
-
-    const { user } = useAuth()
 
     const [showPassword, setShowPassword] = useState(false)
 
@@ -75,7 +72,7 @@ const Login = () => {
                                 </button>
                             </div>
                             <div className="form-control mt-8 text-center">
-                                <p>New here? <span className="underline decoration-2 decoration-[#AB1318]"><Link>Please Sign Up</Link></span></p>
+                                <p>New here? <span className="underline decoration-2 decoration-[#AB1318]"><Link to='/signup'>Please Sign Up</Link></span></p>
                             </div>
                         </div>
                     </div>
