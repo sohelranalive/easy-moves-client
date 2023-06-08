@@ -3,10 +3,12 @@ import Lottie from "lottie-react";
 import loginLottie from "../../assets/loginImg.json";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { FcGoogle } from 'react-icons/fc';
+import GoogleLogin from "../../components/GoogleLogin/GoogleLogin";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
 
+    const { userLogIn } = useAuth()
     const [showPassword, setShowPassword] = useState(false)
 
     return (
@@ -66,10 +68,7 @@ const Login = () => {
                             </form>
                             <div className="divider">OR</div>
                             <div className="form-control mt-6">
-                                <button className="bg-[#AB1318] py-2 uppercase font-semibold rounded-md text-white flex items-center justify-center">
-                                    <span className="mr-2 text-3xl"><FcGoogle /></span>
-                                    <span>Continue with google</span>
-                                </button>
+                                <GoogleLogin color="login"></GoogleLogin>
                             </div>
                             <div className="form-control mt-8 text-center">
                                 <p>New here? <span className="underline decoration-2 decoration-[#AB1318]"><Link to='/signup'>Please Sign Up</Link></span></p>

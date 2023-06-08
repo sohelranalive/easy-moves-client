@@ -5,12 +5,18 @@ import { useState } from "react";
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RxCross1 } from 'react-icons/rx';
 import useAuth from "../../../hooks/useAuth";
-import profilePhoto from "../../../assets/defaultProfilePhoto.png"
 import { Tooltip } from "react-tooltip";
+import { ToastContainer } from 'react-toastify';
 
 const Heading = () => {
 
-    const { user } = useAuth()
+    const { user, userLogOut } = useAuth()
+
+    const handleLogOut = () => {
+        userLogOut()
+            .then(() => { })
+            .catch(error => console.log(error.message))
+    }
 
     const menuItems = <>
         <li><NavLink to='/' className={({ isActive }) => (isActive ? 'b-active' : 'b-default')}>Home</NavLink></li>
@@ -18,15 +24,18 @@ const Heading = () => {
         <li><NavLink to='/classes' className={({ isActive }) => (isActive ? 'b-active' : 'b-default')}>Classes</NavLink></li>
         <li><NavLink to='/dashboard' className={({ isActive }) => (isActive ? 'b-active' : 'b-default')}>Dashboard</NavLink></li>
         <li><NavLink>
-            {!user
+            {user
                 ?
                 <div className='flex items-center space-x-4'>
-                    <button className=" bg-[#AB1318] py-2 px-3 rounded-lg text-white">LogOut</button>
+                    <button
+                        onClick={handleLogOut}
+                        className=" bg-[#AB1318] py-2 px-3 rounded-lg text-white"
+                    >LogOut</button>
                     <div className='h-12 w-12 rounded-full border-2 border-[#AB1318] hidden md:block'>
                         <img
                             data-tooltip-id="my-tooltip"
-                            data-tooltip-content="Hello"
-                            src={user?.photoURL || profilePhoto} alt="" className='h-full w-full rounded-full'
+                            data-tooltip-content={`Hello, ${user?.displayName}`}
+                            src={user?.photoURL} alt="" className='h-full w-full rounded-full'
                         />
                         {
                             <Tooltip id="my-tooltip" />
@@ -74,6 +83,7 @@ const Heading = () => {
                         {menuItems}
                     </ul>
                 </div>
+                <ToastContainer />
             </Container>
         </div>
     );

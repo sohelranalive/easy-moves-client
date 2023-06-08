@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
-import { FcGoogle } from 'react-icons/fc';
+import { Link, useNavigate } from "react-router-dom";
 import signupImg from '../../assets/signupImg.png'
 import Container from "../../components/Container/Container";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import GoogleLogin from "../../components/GoogleLogin/GoogleLogin";
 
 const image_hosting_server_url_key = import.meta.env.VITE_IMAGE_HOSTING_SERVER_API
 const image_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_server_url_key}`
@@ -13,9 +15,21 @@ const Signup = () => {
 
     const [showPassword, setShowPassword] = useState(false)
     const [error, setError] = useState('')
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, userProfileUpdate } = useAuth()
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { createUser, userProfileUpdate, userLogOut } = useAuth()
 
+    const notify = () => toast('User registration successful, please login in now !', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+
+    const navigate = useNavigate()
 
     const onSubmit = data => {
         setError('')
@@ -37,19 +51,48 @@ const Signup = () => {
 
                 createUser(data.email, data.password)
                     .then(result => {
-                        const createdUser = result.user;
-                        userProfileUpdate(data.name, photoURL)
-                            .then(() => {
-                                // sending user info into database
-                            })
-                            .catch(error => {
-                                console.log(error);
-                            })
+                        if (result.user) {
+                            userProfileUpdate(data.name, photoURL)
+                                .then(() => {
+
+                                    // sending user info into database
+                                    const registeredUserInfo = {
+                                        name: data.name,
+                                        email: data.email,
+                                        photo: photoURL,
+                                        gender: data.gender,
+                                        phone: data.phone,
+                                        address: data.address,
+                                        role: 'user'
+                                    }
+                                    fetch('http://localhost:5000/user', {
+                                        method: 'POST',
+                                        headers: {
+                                            'content-type': 'application/json'
+                                        },
+                                        body: JSON.stringify(registeredUserInfo)
+                                    })
+                                        .then(res => res.json())
+                                        .then(data => {
+                                            console.log(data);
+                                            if (data.insertedId) {
+                                                userLogOut()
+                                                    .then(() => { })
+                                                    .catch(error => console.log(error.message))
+                                                reset()
+                                                notify()
+                                                navigate('/login')
+                                            }
+                                        })
+                                })
+                                .catch(error => {
+                                    console.log(error);
+                                })
+                        }
                     })
                     .catch(error => {
                         console.log(error.message);
                     })
-
             })
     };
 
@@ -201,7 +244,7 @@ const Signup = () => {
                                 <div className="form-control mt-8">
                                     <input
                                         type="submit"
-                                        className="bg-slate-900 py-2 uppercase font-semibold rounded-md text-white"
+                                        className="bg-slate-900 py-2 uppercase font-semibold rounded-md text-white cursor-pointer"
                                         value="Login"
                                     />
                                 </div>
@@ -209,10 +252,7 @@ const Signup = () => {
 
                             <div className="divider">OR</div>
                             <div className="form-control mt-6">
-                                <button className="bg-slate-900 py-2 uppercase font-semibold rounded-md text-white flex items-center justify-center">
-                                    <span className="mr-2 text-3xl"><FcGoogle /></span>
-                                    <span>Continue with google</span>
-                                </button>
+                                <GoogleLogin color="signup"></GoogleLogin>
                             </div>
                             <div className="form-control mt-8 text-center">
                                 <p>Already a user? <span className="underline decoration-2 decoration-slate-900"><Link to='/login'>Please Login</Link></span></p>
