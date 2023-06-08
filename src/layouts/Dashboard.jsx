@@ -25,6 +25,14 @@ const Dashboard = () => {
             setDataLoading(false)
             navigate('/dashboard/user-home')
         }
+        if (userLevel?.level == 'admin') {
+            setDataLoading(false)
+            navigate('/dashboard/admin-home')
+        }
+        if (userLevel?.level == 'instructor') {
+            setDataLoading(false)
+            navigate('/dashboard/instructor-home')
+        }
     }, [userLevel?.level, navigate]);
 
 
@@ -53,6 +61,7 @@ const Dashboard = () => {
                             <h1 className="text-xl">Hi, {user.displayName}</h1>
                         </div>
                         <div className="divider"></div>
+                        {/* Dashboard menu for user */}
                         {userLevel?.level == 'user' &&
                             <>
                                 <div>
@@ -66,16 +75,31 @@ const Dashboard = () => {
                                 </div>
                             </>
                         }
+                        {/* Dashboard menu for admin */}
                         {userLevel?.level == 'admin' &&
                             <>
                                 <div>
-                                    <NavLink to='/dashboard/user-home' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Admin Home</NavLink>
+                                    <NavLink to='/dashboard/admin-home' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Admin Home</NavLink>
                                 </div>
                                 <div>
-                                    <NavLink to='/dashboard/user-selected-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Add a Class</NavLink>
+                                    <NavLink to='/dashboard/manage-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Manage Classes</NavLink>
                                 </div>
                                 <div>
-                                    <NavLink to='/dashboard/user-enrolled-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>My Classes</NavLink>
+                                    <NavLink to='/dashboard/manage-user' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Manage Users</NavLink>
+                                </div>
+                            </>
+                        }
+                        {/* Dashboard menu for Instructor */}
+                        {userLevel?.level == 'instructor' &&
+                            <>
+                                <div>
+                                    <NavLink to='/dashboard/instructor-home' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Instructor Home</NavLink>
+                                </div>
+                                <div>
+                                    <NavLink to='/dashboard/add-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Add a Class</NavLink>
+                                </div>
+                                <div>
+                                    <NavLink to='/dashboard/my-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>My Classes</NavLink>
                                 </div>
                             </>
                         }
