@@ -245,7 +245,7 @@ const Signup = () => {
                                     <input
                                         type="submit"
                                         className="bg-slate-900 py-2 uppercase font-semibold rounded-md text-white cursor-pointer"
-                                        value="Login"
+                                        value="Signup"
                                     />
                                 </div>
                             </form>

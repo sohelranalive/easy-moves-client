@@ -2,14 +2,30 @@ import Container from "../../components/Container/Container";
 import Lottie from "lottie-react";
 import loginLottie from "../../assets/loginImg.json";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GoogleLogin from "../../components/GoogleLogin/GoogleLogin";
 import useAuth from "../../hooks/useAuth";
+import { useForm } from "react-hook-form";
+
 
 const Login = () => {
 
     const { userLogIn } = useAuth()
     const [showPassword, setShowPassword] = useState(false)
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const navigate = useNavigate()
+
+    const onSubmit = data => {
+        userLogIn(data.email, data.password)
+            .then(result => {
+                const loggedUser = result.user
+                if (loggedUser) {
+                    reset()
+                    navigate('/')
+                }
+            })
+            .catch(error => console.log(error.message))
+    }
 
     return (
         <div>
@@ -28,7 +44,7 @@ const Login = () => {
                         </div>
                         <div className="divider"></div>
                         <div>
-                            <form>
+                            <form onSubmit={handleSubmit(onSubmit)}>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Email</span>
@@ -36,9 +52,10 @@ const Login = () => {
                                     <input
                                         type="email"
                                         placeholder="email"
-                                        required
                                         className="input input-bordered"
+                                        {...register("email", { required: true })}
                                     />
+                                    {errors.email && <span className="text-red-500 font-bold">Email is required</span>}
                                 </div>
                                 <div className="form-control mt-4">
                                     <label className="label">
@@ -46,9 +63,10 @@ const Login = () => {
                                     </label>
                                     <input
                                         type={showPassword ? 'text' : 'password'} placeholder="password"
-                                        required
                                         className="input input-bordered"
+                                        {...register("password", { required: true })}
                                     />
+                                    {errors.password && <span className="text-red-500 font-bold">Password is required</span>}
                                 </div>
                                 <div className="mt-2">
                                     <input
@@ -61,7 +79,7 @@ const Login = () => {
                                 <div className="form-control mt-6">
                                     <input
                                         type="submit"
-                                        className="bg-[#AB1318] py-2 uppercase font-semibold rounded-md text-white"
+                                        className="bg-[#AB1318] py-2 uppercase font-semibold rounded-md text-white cursor-pointer"
                                         value="Login"
                                     />
                                 </div>
