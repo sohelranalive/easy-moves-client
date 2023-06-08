@@ -10,7 +10,6 @@
 
 .b-active {
   color: #AB1318;
-
 }
 
 .b-active:hover {}
@@ -21,4 +20,16 @@
 
 .b-default:hover {
   color: #AB1318;
+}
+
+.d-active {
+  @apply border-b-4 border-purple-800
+}
+
+.d-active:hover {}
+
+.d-default {}
+
+.d-default:hover {
+  @apply border-b-4 border-red-800
 }
