@@ -1,15 +1,31 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import useLevel from "../hooks/useLevel";
 import useAuth from "../hooks/useAuth";
+import { useEffect, useState } from "react";
 
 const Dashboard = () => {
 
-    const { user } = useAuth()
+    const { user, userLogOut } = useAuth()
     const [userLevel] = useLevel()
+    const navigate = useNavigate()
+    const [dataLoading, setDataLoading] = useState(true)
+    const location = useLocation()
 
-    // if (!isLoading) {
-    //     console.log(userLevel, isLoading);
-    // }
+
+    const handleLogOut = () => {
+        userLogOut()
+            .then(() => {
+                navigate('/')
+            })
+            .catch(error => console.log(error.message))
+    }
+
+    useEffect(() => {
+        if (userLevel?.level == 'user') {
+            setDataLoading(false)
+            navigate('/dashboard/user-home')
+        }
+    }, [userLevel?.level, navigate]);
 
 
     return (
@@ -20,8 +36,10 @@ const Dashboard = () => {
                         <div className="w-1/2 text-white text-start">
                             <Link to='/'><h1 className="text-4xl">EasyMoves</h1></Link>
                         </div>
-                        <div className="w-1/2 text-white text-end">
-                            <h1 className="text-xl uppercase">Hello {user.displayName}</h1>
+                        <div className="w-1/2 text-white flex justify-end">
+                            <div className='h-12 w-12 rounded-full border-2 border-[#AB1318]'>
+                                <img src={user?.photoURL} alt="" className='h-full w-full rounded-full' />
+                            </div>
                         </div>
                     </div>
                 </nav>
@@ -31,6 +49,10 @@ const Dashboard = () => {
 
                 <div className="w-2/12 bg-slate-900 fixed top-0 h-full">
                     <div className="text-white pt-24 pl-8 space-y-4 flex flex-col fixed">
+                        <div>
+                            <h1 className="text-xl">Hi, {user.displayName}</h1>
+                        </div>
+                        <div className="divider"></div>
                         {userLevel?.level == 'user' &&
                             <>
                                 <div>
@@ -57,11 +79,20 @@ const Dashboard = () => {
                                 </div>
                             </>
                         }
+                        <div className="divider"></div>
+                        <div>
+                            <button
+                                onClick={handleLogOut}
+                                className=" bg-[#AB1318] py-2 px-3 rounded-lg text-white"
+                            >LogOut</button>
+                        </div>
+
                     </div>
                 </div>
 
                 <div className="w-10/12 ms-64 pr-8">
                     <div className="pt-8">
+                        {dataLoading && location.pathname == '/dashboard' && < progress className="progress w-56"></progress>}
                         <Outlet></Outlet>
                     </div>
                 </div>
