@@ -21,7 +21,7 @@ const ManageClasses = () => {
                                 <th>Instructor Info</th>
                                 <th className="text-center">Available Seats</th>
                                 <th className="text-center">Price</th>
-                                <th className="text-center">Status</th>
+                                <th className="text-center">Current Status</th>
                                 <th className="text-center">Actions</th>
                             </tr>
                         </thead>

@@ -6,8 +6,8 @@ const ManageUsers = () => {
     console.log(adminStats);
 
     return (
-        <div>
-            <h1>Total User: {adminStats?.length}</h1>
+        <div className="w-9/12 mx-auto">
+            <h1>Total Number of Users: {adminStats?.userResult.length}</h1>
             <div>
 
                 <div className="overflow-x-auto">
@@ -15,21 +15,18 @@ const ManageUsers = () => {
                         {/* head */}
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Class Image</th>
-                                <th>Class Name</th>
-                                <th>Instructor Info</th>
-                                <th>Available Seats</th>
-                                <th>Price</th>
-                                <th>Status</th>
-                                <th>Actions</th>
+                                <th>User Image</th>
+                                <th>User Name</th>
+                                <th>Current Role</th>
+                                <th className="text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {/* row will show here from SingleUserData Component */}
                             {
-                                adminStats?.map(singleUser => <SingleUserData
-                                    key={singleUser._id} singleUser={singleUser}>
+                                adminStats?.userResult.map(singleUser => <SingleUserData
+                                    key={singleUser._id}
+                                    singleUser={singleUser}>
                                 </SingleUserData>)
                             }
                         </tbody>
