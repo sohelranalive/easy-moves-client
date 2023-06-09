@@ -2,7 +2,7 @@ import Container from "../../components/Container/Container";
 import Lottie from "lottie-react";
 import loginLottie from "../../assets/loginImg.json";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import GoogleLogin from "../../components/GoogleLogin/GoogleLogin";
 import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
@@ -15,6 +15,8 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false)
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/'
 
     const onSubmit = data => {
         userLogIn(data.email, data.password)
@@ -22,7 +24,7 @@ const Login = () => {
                 const loggedUser = result.user
                 if (loggedUser) {
                     reset()
-                    navigate('/')
+                    navigate(from, { replace: true })
                 }
             })
             .catch(error => console.log(error.message))
