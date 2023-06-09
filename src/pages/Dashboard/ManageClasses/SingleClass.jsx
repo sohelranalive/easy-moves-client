@@ -1,6 +1,8 @@
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAdmin from "../../../hooks/useAdmin";
+import FeedbackModal from "./FeedbackModal";
+import { useState } from "react";
 
 const SingleClass = ({ singleClass, index }) => {
 
@@ -9,6 +11,7 @@ const SingleClass = ({ singleClass, index }) => {
     const [axiosSecure] = useAxiosSecure()
     const [, refetch] = useAdmin()
 
+    const [isOpen, setIsOpen] = useState(false)
 
     const handleClassAction = (action) => {
         const url = `/class/takeAction?action=${action}&userId=${_id}`
@@ -39,6 +42,10 @@ const SingleClass = ({ singleClass, index }) => {
         })
     }
 
+    const handleFeedbackForm = () => {
+        setIsOpen(!isOpen)
+    }
+
     return (
         <tr>
             <td>{index + 1}</td>
@@ -63,23 +70,26 @@ const SingleClass = ({ singleClass, index }) => {
                 {status == 'pending' && <>
                     <button onClick={() => handleClassAction('approved')} className="btn btn-primary btn-xs mt-2">Approve</button>
                     <button onClick={() => handleClassAction('denied')} className="btn btn-primary btn-xs mt-2">Deny</button>
-                    <button className="btn btn-primary btn-xs mt-2">Feedback</button>
+                    <button disabled className="btn btn-primary btn-xs mt-2">Feedback</button>
                 </>
                 }
                 {status == 'approved' && <>
                     <button disabled className="btn btn-primary btn-xs mt-2">Approve</button>
                     <button disabled className="btn btn-primary btn-xs mt-2">Deny</button>
-                    <button className="btn btn-primary btn-xs mt-2">Feedback</button>
+                    <button disabled className="btn btn-primary btn-xs mt-2">Feedback</button>
                 </>
                 }
                 {status == 'denied' && <>
                     <button disabled className="btn btn-primary btn-xs mt-2">Approve</button>
                     <button disabled className="btn btn-primary btn-xs mt-2">Deny</button>
-                    <button className="btn btn-primary btn-xs mt-2">Feedback</button>
+                    <button onClick={handleFeedbackForm} className="btn btn-primary btn-xs mt-2">Feedback</button>
                 </>
                 }
-
-
+                {isOpen && <FeedbackModal
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                    singleClass={singleClass}
+                ></FeedbackModal>}
             </td>
         </tr>
     );
