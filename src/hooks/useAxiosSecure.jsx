@@ -9,7 +9,7 @@ const axiosSecure = axios.create({
 });
 
 const useAxiosSecure = () => {
-    const { logOut } = useAuth();
+    const { userLogOut } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -24,15 +24,15 @@ const useAxiosSecure = () => {
         axiosSecure.interceptors.response.use(
             (response) => response,
             async (error) => {
+                console.log('use axios 27', error);
                 if (error.response && (error.response.status === 401 || error.response.status === 403)) {
-                    await logOut();
+                    await userLogOut()
                     navigate('/login');
-                    console.log(error.response);
                 }
                 return Promise.reject(error);
             }
         );
-    }, [logOut, navigate]);
+    }, [userLogOut, navigate]);
 
 
 
