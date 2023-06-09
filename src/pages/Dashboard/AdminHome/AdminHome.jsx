@@ -1,25 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import useAuth from "../../../hooks/useAuth";
+import useAdmin from "../../../hooks/useAdmin";
 
 const AdminHome = () => {
 
-    const [axiosSecure] = useAxiosSecure()
-    const { user } = useAuth()
-
-    const { data: adminStats } = useQuery({
-        queryKey: ['adminStats', user?.email],
-        queryFn: async () => {
-            const result = await axiosSecure.get(`/admin/stats/${user.email}`)
-            return result.data
-        }
-    })
-
+    const [adminStats] = useAdmin()
     console.log(adminStats);
 
     return (
         <div>
-            <h1>Admin stats will show here</h1>
+            <h1>Total Number of Class: {adminStats?.classResult.length}</h1>
+            <h1>Total Number of Users: {adminStats?.userResult.length}</h1>
         </div>
     );
 };

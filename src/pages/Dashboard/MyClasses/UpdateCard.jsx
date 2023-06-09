@@ -6,7 +6,7 @@ import useInstructor from "../../../hooks/useInstructor";
 const UpdateCard = ({ isOpen, setIsOpen, info }) => {
 
     const [axiosSecure] = useAxiosSecure()
-    const [instructorStats, refetch] = useInstructor()
+    const [, refetch] = useInstructor()
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = data => {
