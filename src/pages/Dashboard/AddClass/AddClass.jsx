@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useInstructor from "../../../hooks/useInstructor";
 
 const image_hosting_server_url_key = import.meta.env.VITE_IMAGE_HOSTING_SERVER_API
 const image_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_server_url_key}`
@@ -11,6 +12,8 @@ const AddClass = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { user } = useAuth()
     const [axiosSecure] = useAxiosSecure()
+    const [instructorStats, refetch] = useInstructor()
+    console.log(instructorStats);
 
     const onSubmit = data => {
 
@@ -46,6 +49,7 @@ const AddClass = () => {
                                 timer: 1500
                             })
                             reset()
+                            refetch()
                         }
                     })
             })

@@ -1,19 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../../hooks/useAuth";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useInstructor from "../../../hooks/useInstructor";
 
 const InstructorHome = () => {
 
-    const [axiosSecure] = useAxiosSecure()
-    const { user } = useAuth()
+    const [instructorStats] = useInstructor()
 
-    const { data: instructorStats } = useQuery({
-        queryKey: ['instructorStats', user?.email],
-        queryFn: async () => {
-            const result = await axiosSecure.get(`/instructor/stats/${user.email}`)
-            return result.data
-        }
-    })
     console.log(instructorStats);
 
     return (
