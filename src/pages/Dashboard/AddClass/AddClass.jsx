@@ -38,7 +38,7 @@ const AddClass = () => {
                     price: parseFloat(data.price),
                     status: 'pending'
                 }
-                axiosSecure.post('http://localhost:5000/instructor/addClass', classInfo)
+                axiosSecure.post('/instructor/addClass', classInfo)
                     .then(classData => {
                         if (classData.data.insertedId) {
                             Swal.fire({
