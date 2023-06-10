@@ -21,37 +21,44 @@ const AddClass = () => {
         const formData = new FormData()
         formData.append('image', data.classPhoto[0])
 
+        let classPhotoURL = ''
+
         fetch(image_hosting_url, {
             method: 'POST',
             body: formData
         })
             .then(res => res.json())
             .then(imageData => {
-                const classPhotoURL = imageData.data.display_url;
-
-                const classInfo = {
-                    className: data.className,
-                    classPhoto: classPhotoURL,
-                    instructorName: user?.displayName,
-                    instructorEmail: user?.email,
-                    availableSeats: parseFloat(data.seats),
-                    price: parseFloat(data.price),
-                    status: 'pending'
+                if (imageData) {
+                    console.log(imageData);
+                    classPhotoURL = imageData.data.display_url;
                 }
-                axiosSecure.post('/instructor/addClass', classInfo)
-                    .then(classData => {
-                        if (classData.data.insertedId) {
-                            Swal.fire({
-                                position: 'top-center',
-                                icon: 'success',
-                                title: 'Class added successful',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                            reset()
-                            refetch()
-                        }
+            })
+
+
+        const classInfo = {
+            className: data.className,
+            classPhoto: classPhotoURL,
+            instructorName: user?.displayName,
+            instructorEmail: user?.email,
+            availableSeats: parseFloat(data.seats),
+            price: parseFloat(data.price),
+            status: 'pending'
+        }
+
+        axiosSecure.post('/instructor/addClass', classInfo)
+            .then(classData => {
+                if (classData.data.insertedId) {
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'success',
+                        title: 'Class added successful',
+                        showConfirmButton: false,
+                        timer: 1500
                     })
+                    reset()
+                    refetch()
+                }
             })
     }
 

@@ -17,6 +17,7 @@ const Signup = () => {
     const [error, setError] = useState('')
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { createUser, userProfileUpdate, userLogOut } = useAuth()
+    const navigate = useNavigate()
 
     const notify = () => toast('User registration successful, please login in now !', {
         position: "top-right",
@@ -29,14 +30,16 @@ const Signup = () => {
         theme: "light",
     });
 
-    const navigate = useNavigate()
-
     const onSubmit = data => {
+
         setError('')
+
         if (data.password !== data.confirmPass) {
             setError('Password mismatch')
             return
         }
+
+        let photoURL = ''
 
         const formData = new FormData()
         formData.append('image', data.photo[0])
@@ -47,52 +50,57 @@ const Signup = () => {
         })
             .then(res => res.json())
             .then(imageData => {
-                const photoURL = imageData.data.display_url;
+                if (imageData) {
+                    console.log(imageData);
+                    photoURL = imageData.data.display_url;
+                }
+            })
 
-                createUser(data.email, data.password)
-                    .then(result => {
-                        if (result.user) {
-                            userProfileUpdate(data.name, photoURL)
-                                .then(() => {
+        createUser(data.email, data.password)
+            .then(result => {
+                if (result.user) {
+                    userProfileUpdate(data.name, photoURL)
+                        .then(() => {
 
-                                    // sending user info into database
-                                    const registeredUserInfo = {
-                                        name: data.name,
-                                        email: data.email,
-                                        photo: photoURL,
-                                        gender: data.gender,
-                                        phone: data.phone,
-                                        address: data.address,
-                                        role: 'user'
+                            // sending user info into database
+                            const registeredUserInfo = {
+                                name: data.name,
+                                email: data.email,
+                                photo: photoURL,
+                                gender: data.gender,
+                                phone: data.phone,
+                                address: data.address,
+                                role: 'user'
+                            }
+                            fetch('http://localhost:5000/user', {
+                                method: 'POST',
+                                headers: {
+                                    'content-type': 'application/json'
+                                },
+                                body: JSON.stringify(registeredUserInfo)
+                            })
+                                .then(res => res.json())
+                                .then(data => {
+                                    console.log(data);
+                                    if (data.insertedId) {
+                                        userLogOut()
+                                            .then(() => { })
+                                            .catch(error => console.log(error.message))
+                                        reset()
+                                        notify()
+                                        navigate('/login')
                                     }
-                                    fetch('http://localhost:5000/user', {
-                                        method: 'POST',
-                                        headers: {
-                                            'content-type': 'application/json'
-                                        },
-                                        body: JSON.stringify(registeredUserInfo)
-                                    })
-                                        .then(res => res.json())
-                                        .then(data => {
-                                            console.log(data);
-                                            if (data.insertedId) {
-                                                userLogOut()
-                                                    .then(() => { })
-                                                    .catch(error => console.log(error.message))
-                                                reset()
-                                                notify()
-                                                navigate('/login')
-                                            }
-                                        })
                                 })
-                                .catch(error => {
-                                    console.log(error);
-                                })
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error.message);
-                    })
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        })
+                }
+            })
+            .catch(error => {
+                if (error.code == 'auth/email-already-in-use') {
+                    setError('Enter a new email, this email already in use')
+                }
             })
     };
 
@@ -183,7 +191,6 @@ const Signup = () => {
                                 {errors.password && errors.password.type === "pattern" && (
                                     <span className="text-red-500 font-bold">Password must include a capital letter and a special character</span>
                                 )}
-                                <span className="text-red-500 font-bold">{error}</span>
                                 <div className="mt-2">
                                     <input
                                         onClick={() => setShowPassword(!showPassword)}
@@ -240,16 +247,17 @@ const Signup = () => {
                                     />
                                     {errors.photo && <span className="text-red-500 font-bold">Photo is required for ID</span>}
                                 </div>
+
+                                <span className="text-red-500 font-bold">{error}</span>
+
                                 {/* Login button */}
                                 <div className="form-control mt-8">
                                     <input
                                         type="submit"
-                                        className="bg-slate-900 py-2 uppercase font-semibold rounded-md text-white cursor-pointer"
                                         value="Signup"
-                                    />
+                                        className="bg-slate-900 py-3 uppercase font-semibold rounded-md text-white cursor-pointer" />
                                 </div>
                             </form>
-
                             <div className="divider">OR</div>
                             <div className="form-control mt-6">
                                 <GoogleLogin color="signup"></GoogleLogin>

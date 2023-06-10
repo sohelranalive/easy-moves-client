@@ -3,7 +3,13 @@ import SingleUserData from "./SingleUserData";
 
 const ManageUsers = () => {
     const [adminStats] = useAdmin()
-    console.log(adminStats);
+
+    const comparator = (a, b) => {
+        const roleOrder = { admin: 0, instructor: 1, user: 2 };
+        return roleOrder[a.role] - roleOrder[b.role];
+    };
+
+    const allUsers = adminStats?.userResult.sort(comparator)
 
     return (
         <div className="w-9/12 mx-auto">
@@ -24,7 +30,7 @@ const ManageUsers = () => {
                         <tbody>
                             {/* row will show here from SingleUserData Component */}
                             {
-                                adminStats?.userResult.map(singleUser => <SingleUserData
+                                allUsers.map(singleUser => <SingleUserData
                                     key={singleUser._id}
                                     singleUser={singleUser}>
                                 </SingleUserData>)

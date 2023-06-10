@@ -75,7 +75,7 @@ const SingleUserData = ({ singleUser }) => {
                 </>
                 }
                 {currentStatus == 'Instructor' && <>
-                    <button onClick={() => handleRoleChange('admin')} className="btn btn-primary btn-sm">Make Admin</button>
+                    <button disabled className="btn btn-primary btn-sm">Make Admin</button>
                     <button disabled className="btn btn-primary btn-sm">Make Instructor</button>
                 </>}
             </td>

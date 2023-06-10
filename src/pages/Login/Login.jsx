@@ -10,7 +10,6 @@ import { useForm } from "react-hook-form";
 
 
 const Login = () => {
-
     const { userLogIn } = useAuth()
     const [showPassword, setShowPassword] = useState(false)
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -19,6 +18,7 @@ const Login = () => {
     const from = location.state?.from?.pathname || '/'
 
     const onSubmit = data => {
+
         userLogIn(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user
@@ -89,7 +89,7 @@ const Login = () => {
                             </form>
                             <div className="divider">OR</div>
                             <div className="form-control mt-6">
-                                <GoogleLogin color="login"></GoogleLogin>
+                                <GoogleLogin from={from} color="login"></GoogleLogin>
                             </div>
                             <div className="form-control mt-8 text-center">
                                 <p>New here? <span className="underline decoration-2 decoration-[#AB1318]"><Link to='/signup'>Please Sign Up</Link></span></p>

@@ -2,11 +2,14 @@ import { FcGoogle } from 'react-icons/fc';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
-const GoogleLogin = ({ color }) => {
+const GoogleLogin = ({ color, from }) => {
 
     const { googleLogIn } = useAuth()
 
     const navigate = useNavigate()
+    const target = from || '/'
+    console.log(target);
+
 
     const handleGoogleLogin = () => {
         googleLogIn()
@@ -39,10 +42,11 @@ const GoogleLogin = ({ color }) => {
                                 .then(data => {
                                     console.log(data);
                                     if (data.insertedId) {
-                                        navigate('/')
+                                        navigate(target)
                                     }
                                 })
                         }
+                        navigate(target)
                     })
             })
             .catch(error => {
