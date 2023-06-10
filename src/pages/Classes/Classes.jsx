@@ -3,9 +3,25 @@ import Container from '../../components/Container/Container';
 import '../Classes/Classes.css'
 import { useEffect } from 'react';
 import SingleClassCard from './SingleClassCard';
+import useAuth from '../../hooks/useAuth';
 
 
 const Classes = () => {
+
+    const { user } = useAuth()
+
+    const [userLevel, setUserLevel] = useState('')
+
+    useEffect(() => {
+        if (!user) {
+            return
+        }
+        fetch(`http://localhost:5000/user/level?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setUserLevel(data.level)
+            })
+    }, [user])
 
     const [classes, setClasses] = useState([])
 
@@ -29,7 +45,8 @@ const Classes = () => {
                     {
                         classes.map(singleClass => <SingleClassCard
                             key={singleClass._id}
-                            singleClass={singleClass}>
+                            singleClass={singleClass}
+                            userLevel={userLevel}>
                         </SingleClassCard>)
                     }
                 </div>

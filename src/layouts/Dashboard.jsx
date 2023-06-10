@@ -10,12 +10,15 @@ const Dashboard = () => {
     const [level, setLevel] = useState('')
 
     useEffect(() => {
+        if (!user) {
+            return
+        }
         fetch(`http://localhost:5000/user/level?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setLevel(data.level)
             })
-    }, [user?.email])
+    }, [user])
 
     const handleLogOut = () => {
         userLogOut()
