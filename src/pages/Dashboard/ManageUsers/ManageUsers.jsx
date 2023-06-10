@@ -12,7 +12,7 @@ const ManageUsers = () => {
     const allUsers = adminStats?.userResult.sort(comparator)
 
     return (
-        <div className="w-9/12 mx-auto">
+        <div>
             <h1>Total Number of Users: {adminStats?.userResult.length}</h1>
             <div>
 
@@ -24,6 +24,7 @@ const ManageUsers = () => {
                                 <th>User Image</th>
                                 <th>User Name</th>
                                 <th>Current Role</th>
+                                <th className="text-center">Statistics</th>
                                 <th className="text-center">Actions</th>
                             </tr>
                         </thead>

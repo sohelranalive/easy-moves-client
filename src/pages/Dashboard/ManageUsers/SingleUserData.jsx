@@ -2,6 +2,8 @@ import Swal from "sweetalert2";
 import useAdmin from "../../../hooks/useAdmin";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
+//TODO: Fetch data from class and instructor, then filter out pending, approval, denied.
+
 const SingleUserData = ({ singleUser }) => {
 
     const [axiosSecure] = useAxiosSecure()
@@ -63,6 +65,21 @@ const SingleUserData = ({ singleUser }) => {
             </td>
             <td>{name}</td>
             <td>{currentStatus}</td>
+            <td className="text-center">
+                {
+                    currentStatus == 'Student' && <span>Enrolled: 5</span>
+                }
+                {
+                    currentStatus == 'Instructor' && <>
+                        <p>Approved: 3</p>
+                        <p>Pending: 2</p>
+                        <p>Denied: 1</p>
+                    </>
+                }
+                {
+                    currentStatus == 'Admin' && <span>N/A</span>
+                }
+            </td>
             <td className="space-x-4 text-center">
                 {currentStatus == 'Admin' && <>
                     <button disabled className="btn btn-primary btn-sm">Make Admin</button>
