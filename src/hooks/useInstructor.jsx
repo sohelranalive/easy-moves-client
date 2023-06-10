@@ -7,15 +7,15 @@ const useInstructor = () => {
     const [axiosSecure] = useAxiosSecure()
     const { user } = useAuth()
 
-    const { data: instructorStats, refetch } = useQuery({
+    const { data: instructorStats, isLoading: isInstructorLoading, refetch } = useQuery({
         queryKey: ['instructorStats', user?.email],
         queryFn: async () => {
-            const result = await axiosSecure.get(`/instructor/stats/${user.email}`)
+            const result = await axiosSecure.get(`/instructor/stats/${user?.email}`)
             return result.data
         }
     })
 
-    return [instructorStats, refetch]
+    return [instructorStats, isInstructorLoading, refetch]
 };
 
 export default useInstructor;

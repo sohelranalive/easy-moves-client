@@ -9,7 +9,7 @@ const SingleClass = ({ singleClass, index }) => {
     const { _id, classPhoto, className, instructorName, instructorEmail, availableSeats, status, price } = singleClass;
 
     const [axiosSecure] = useAxiosSecure()
-    const [, refetch] = useAdmin()
+    const [, , refetch] = useAdmin()
 
     const [isOpen, setIsOpen] = useState(false)
 

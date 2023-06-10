@@ -1,6 +1,5 @@
 const InstructorCard = ({ instructor }) => {
 
-    console.log(instructor);
     const { name, photo, email } = instructor
 
     return (

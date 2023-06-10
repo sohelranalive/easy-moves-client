@@ -12,7 +12,7 @@ const AddClass = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { user } = useAuth()
     const [axiosSecure] = useAxiosSecure()
-    const [instructorStats, refetch] = useInstructor()
+    const [instructorStats, , refetch] = useInstructor()
     console.log(instructorStats);
 
     const onSubmit = data => {

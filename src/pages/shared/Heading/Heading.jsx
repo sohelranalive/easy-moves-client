@@ -23,7 +23,7 @@ const Heading = () => {
         <li><NavLink to='/instructors' className={({ isActive }) => (isActive ? 'b-active' : 'b-default')}>Instructors</NavLink></li>
         <li><NavLink to='/classes' className={({ isActive }) => (isActive ? 'b-active' : 'b-default')}>Classes</NavLink></li>
         <li><NavLink to='/dashboard' className={({ isActive }) => (isActive ? 'b-active' : 'b-default')}>Dashboard</NavLink></li>
-        <li><NavLink>
+        <li>
             {user
                 ?
                 <div className='flex items-center space-x-4'>
@@ -47,7 +47,7 @@ const Heading = () => {
                     <NavLink to='/login' className=" bg-[#AB1318] py-2 px-3 rounded-lg text-white">Login</NavLink>
                 </div>
             }
-        </NavLink></li>
+        </li>
     </>
 
     const [menuOpen, setMenuOpen] = useState(false)

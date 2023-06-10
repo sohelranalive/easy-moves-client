@@ -7,7 +7,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const SingleUserData = ({ singleUser }) => {
 
     const [axiosSecure] = useAxiosSecure()
-    const [, refetch] = useAdmin()
+    const [, , refetch] = useAdmin()
 
     const { name, photo, role, _id } = singleUser;
 

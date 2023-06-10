@@ -1,16 +1,21 @@
-import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
-import useLevel from "../hooks/useLevel";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const Dashboard = () => {
 
     const { user, userLogOut } = useAuth()
-    const [userLevel] = useLevel()
     const navigate = useNavigate()
-    const [dataLoading, setDataLoading] = useState(true)
-    const location = useLocation()
+    const [level, setLevel] = useState('')
 
+    useEffect(() => {
+        fetch(`http://localhost:5000/user/level?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setLevel(data.level)
+            })
+    }, [user?.email])
 
     const handleLogOut = () => {
         userLogOut()
@@ -21,19 +26,16 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
-        if (userLevel?.level == 'user') {
-            setDataLoading(false)
-            navigate('/dashboard/user-home')
+        if (level == 'user') {
+            return navigate('/dashboard/user-home')
         }
-        if (userLevel?.level == 'admin') {
-            setDataLoading(false)
-            navigate('/dashboard/admin-home')
+        if (level == 'admin') {
+            return navigate('/dashboard/admin-home')
         }
-        if (userLevel?.level == 'instructor') {
-            setDataLoading(false)
-            navigate('/dashboard/instructor-home')
+        if (level == 'instructor') {
+            return navigate('/dashboard/instructor-home')
         }
-    }, [userLevel?.level, navigate]);
+    }, [level, navigate]);
 
 
     return (
@@ -62,7 +64,7 @@ const Dashboard = () => {
                         </div>
                         <div className="divider"></div>
                         {/* Dashboard menu for user */}
-                        {userLevel?.level == 'user' &&
+                        {level == 'user' &&
                             <>
                                 <div>
                                     <NavLink to='/dashboard/user-home' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>User Home</NavLink>
@@ -76,7 +78,7 @@ const Dashboard = () => {
                             </>
                         }
                         {/* Dashboard menu for admin */}
-                        {userLevel?.level == 'admin' &&
+                        {level == 'admin' &&
                             <>
                                 <div>
                                     <NavLink to='/dashboard/admin-home' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Admin Home</NavLink>
@@ -90,7 +92,7 @@ const Dashboard = () => {
                             </>
                         }
                         {/* Dashboard menu for Instructor */}
-                        {userLevel?.level == 'instructor' &&
+                        {level == 'instructor' &&
                             <>
                                 <div>
                                     <NavLink to='/dashboard/instructor-home' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Instructor Home</NavLink>
@@ -116,7 +118,6 @@ const Dashboard = () => {
 
                 <div className="w-10/12 ms-64 pr-8">
                     <div className="pt-8">
-                        {dataLoading && location.pathname == '/dashboard' && < progress className="progress w-56"></progress>}
                         <Outlet></Outlet>
                     </div>
                 </div>

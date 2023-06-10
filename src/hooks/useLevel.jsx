@@ -9,9 +9,10 @@ const useLevel = () => {
 
     const { data: userLevel, isLoading } = useQuery({
         queryKey: ['checkLevel', user?.email],
-        enabled: !loading,
+        enabled: !loading && user == true,
         queryFn: async () => {
-            const result = await axiosSecure.get(`/user/level/${user.email}`)
+            const result = await axiosSecure.get(`/user/level/${user?.email}`)
+            console.log('checking level inside uselevel hook', result.data);
             return result.data
         }
     })

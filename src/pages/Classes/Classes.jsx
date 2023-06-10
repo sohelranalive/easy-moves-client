@@ -4,6 +4,7 @@ import '../Classes/Classes.css'
 import { useEffect } from 'react';
 import SingleClassCard from './SingleClassCard';
 
+
 const Classes = () => {
 
     const [classes, setClasses] = useState([])
@@ -15,6 +16,7 @@ const Classes = () => {
                 setClasses(data);
             })
     }, [])
+
 
     return (
         <div className='bg-slate-200'>

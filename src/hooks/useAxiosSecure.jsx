@@ -24,7 +24,6 @@ const useAxiosSecure = () => {
         axiosSecure.interceptors.response.use(
             (response) => response,
             async (error) => {
-                console.log('use axios 27', error);
                 if (error.response && (error.response.status === 401 || error.response.status === 403)) {
                     await userLogOut()
                     navigate('/login');
@@ -33,10 +32,6 @@ const useAxiosSecure = () => {
             }
         );
     }, [userLogOut, navigate]);
-
-
-
-
 
     return [axiosSecure];
 };

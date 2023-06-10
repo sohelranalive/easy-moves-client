@@ -1,17 +1,17 @@
 import { Navigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import useLevel from "../hooks/useLevel";
+import useInstructor from "../hooks/useInstructor";
 
 const InstructorRoute = ({ children }) => {
 
     const { user, loading } = useAuth()
-    const [userLevel, isLoading] = useLevel()
+    const [instructorStats, isInstructorLoading] = useInstructor()
 
-    if (loading || isLoading) {
+    if (loading || isInstructorLoading) {
         return <progress className="progress w-56"></progress>
     }
 
-    if (user && userLevel?.level == 'instructor') {
+    if (user && instructorStats) {
         return children;
     }
 
