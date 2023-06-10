@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 
 const SingleClassCard = ({ singleClass, userLevel }) => {
@@ -10,8 +11,9 @@ const SingleClassCard = ({ singleClass, userLevel }) => {
     const { user } = useAuth()
     const navigate = useNavigate()
 
-    const handleAddClass = (_id) => {
-        console.log(_id);
+    const [axiosSecure] = useAxiosSecure()
+
+    const handleAddClass = () => {
         if (!user) {
             return Swal.fire({
                 title: 'Your are not an authorized user',
@@ -27,7 +29,21 @@ const SingleClassCard = ({ singleClass, userLevel }) => {
                 }
             })
         }
-        console.log('Hello');
+
+        const selectedClass = { classId: _id, classPhoto, className, instructorName, price, selectedBy: user?.email }
+
+        axiosSecure.post('/user/addClass', selectedClass)
+            .then(data => {
+                if (data.data.insertedId) {
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'success',
+                        title: `${className} class added successfully!`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
     }
 
     return (
@@ -39,7 +55,7 @@ const SingleClassCard = ({ singleClass, userLevel }) => {
                 <p>Set Remaining: {availableSeats}</p>
                 <p>Class Fees: {price}</p>
                 <div className="card-actions justify-end">
-                    <button disabled={availableSeats <= 0 || userLevel == 'admin' || userLevel == 'instructor'} onClick={() => handleAddClass(_id)} className="btn btn-primary">Take Class</button>
+                    <button disabled={availableSeats <= 0 || userLevel == 'admin' || userLevel == 'instructor'} onClick={handleAddClass} className="btn btn-primary">Take Class</button>
                 </div>
             </div>
         </div >
