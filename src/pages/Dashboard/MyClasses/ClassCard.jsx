@@ -10,13 +10,15 @@ const ClassCard = ({ info }) => {
         setIsOpen(true)
     }
 
-    const { className, status, feedback } = info
+    const { className, status, feedback, availableSeats, totalEnrolled, totalSeats } = info
     return (
         <>
             <div className={`card ${status == 'denied' && 'bg-red-400 text-black'} ${status == 'approved' && 'bg-primary text-white'} ${status == 'pending' && 'bg-neutral text-neutral-content'}`}>
                 <div className="card-body">
                     <h2 className="card-title">{className}</h2>
-                    <p>Total Enrolled Students: 10</p>
+                    <p>Total Seats: {totalSeats}</p>
+                    <p>Total Enrolled: {totalEnrolled}</p>
+                    <p>Available Seats: {availableSeats}</p>
                     <div className="mt-4">
                         <hr className="border-gray-200 border-2 w-full" />
                         <p>Status: {status}</p>

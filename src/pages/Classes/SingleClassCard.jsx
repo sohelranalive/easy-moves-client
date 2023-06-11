@@ -6,7 +6,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const SingleClassCard = ({ singleClass, userLevel }) => {
 
-    const { _id, classPhoto, className, instructorName, availableSeats, price } = singleClass;
+    const { _id, classPhoto, className, instructorName, availableSeats, totalEnrolled, price } = singleClass;
 
     const { user } = useAuth()
     const navigate = useNavigate()
@@ -43,6 +43,9 @@ const SingleClassCard = ({ singleClass, userLevel }) => {
                         timer: 1500
                     })
                 }
+                if (data.data.isExists) {
+                    Swal.fire('Already Added')
+                }
             })
     }
 
@@ -53,6 +56,7 @@ const SingleClassCard = ({ singleClass, userLevel }) => {
                 <h2 className="card-title">{className}</h2>
                 <p>Instructor: {instructorName}</p>
                 <p>Set Remaining: {availableSeats}</p>
+                <p>Total Enrolled: {totalEnrolled}</p>
                 <p>Class Fees: {price}</p>
                 <div className="card-actions justify-end">
                     <button disabled={availableSeats <= 0 || userLevel == 'admin' || userLevel == 'instructor'} onClick={handleAddClass} className="btn btn-primary">Take Class</button>

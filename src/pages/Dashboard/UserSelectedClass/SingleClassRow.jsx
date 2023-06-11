@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 
 const SingleClassRow = ({ singleClass, refetch, index }) => {
 
-    const { _id, classId, className, instructorName, classPhoto, price } = singleClass;
+    const { _id, className, instructorName, classPhoto, price } = singleClass;
     const [axiosSecure] = useAxiosSecure()
 
     const handleDeleteClass = () => {

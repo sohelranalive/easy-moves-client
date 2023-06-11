@@ -19,6 +19,7 @@ import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import MyClasses from "../pages/Dashboard/MyClasses/MyClasses";
 import Instructor from "../pages/Instructor/Instructor";
 import Classes from "../pages/Classes/Classes";
+import Payment from "../pages/Dashboard/Payments/Payment";
 
 const router = createBrowserRouter([
     {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
             {
                 path: 'user-enrolled-class',
                 element: <UserRoute><UserEnrolledClass></UserEnrolledClass></UserRoute>
+            },
+            {
+                path: 'payment',
+                element: <UserRoute><Payment></Payment></UserRoute>
             },
             {
                 path: 'admin-home',

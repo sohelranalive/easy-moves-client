@@ -73,10 +73,10 @@ const Dashboard = () => {
                                     <NavLink to='/dashboard/user-home' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>User Home</NavLink>
                                 </div>
                                 <div>
-                                    <NavLink to='/dashboard/user-selected-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>My Selected Classes</NavLink>
+                                    <NavLink to='/dashboard/user-selected-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Selected Classes</NavLink>
                                 </div>
                                 <div>
-                                    <NavLink to='/dashboard/user-enrolled-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>My Enrolled Class</NavLink>
+                                    <NavLink to='/dashboard/user-enrolled-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Enrolled Class</NavLink>
                                 </div>
                             </>
                         }

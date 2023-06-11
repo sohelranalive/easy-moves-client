@@ -40,7 +40,9 @@ const AddClass = () => {
                     instructorEmail: user?.email,
                     availableSeats: parseFloat(data.seats),
                     price: parseFloat(data.price),
-                    status: 'pending'
+                    status: 'pending',
+                    totalEnrolled: (0),
+                    totalSeats: parseFloat(data.seats)
                 }
 
                 axiosSecure.post('/instructor/addClass', classInfo)
@@ -124,7 +126,7 @@ const AddClass = () => {
                     <div className="flex w-full">
                         <div className="form-control mt-4 w-1/2">
                             <label className="label">
-                                <span className="label-text">Available Seats</span>
+                                <span className="label-text">Total Seats</span>
                             </label>
                             <input
                                 {...register("seats", { required: true, })}

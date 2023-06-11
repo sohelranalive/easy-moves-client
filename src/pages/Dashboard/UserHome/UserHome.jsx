@@ -1,4 +1,9 @@
+import useUser from "../../../hooks/useUser";
+
 const UserHome = () => {
+
+    const [userStats] = useUser()
+    console.log(userStats);
 
     return (
         <div>
