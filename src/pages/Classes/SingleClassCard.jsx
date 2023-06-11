@@ -46,6 +46,9 @@ const SingleClassCard = ({ singleClass, userLevel }) => {
                 if (data.data.isExists) {
                     Swal.fire('Already Added')
                 }
+                if (data.data.isEnrolled) {
+                    Swal.fire('You have already enrolled to this class, try a new class')
+                }
             })
     }
 

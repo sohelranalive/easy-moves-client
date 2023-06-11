@@ -52,10 +52,6 @@ const Heading = () => {
 
     const [menuOpen, setMenuOpen] = useState(false)
 
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
-    };
-
     return (
         <div className="py-2 border-b-2 shadow-sm relative">
             <Container>
@@ -70,7 +66,7 @@ const Heading = () => {
                         </ul>
                     </div>
                     <div className="md:hidden text-3xl flex items-center">
-                        <button onClick={toggleMenu}>
+                        <button onClick={() => setMenuOpen(!menuOpen)}>
                             {
                                 menuOpen ? <RxCross1 /> : <GiHamburgerMenu />
                             }
@@ -79,7 +75,7 @@ const Heading = () => {
                 </div>
                 {/* dropdown menu */}
                 <div>
-                    <ul className={`bg-white py-4 px-4 rounded-md flex flex-col space-y-4 text-right absolute right-4 top-16 md:hidden ${menuOpen ? 'block' : 'hidden'}`}>
+                    <ul onClick={() => setMenuOpen(!menuOpen)} className={`bg-white py-4 px-4 rounded-md flex flex-col space-y-4 text-right absolute right-4 top-16 md:hidden ${menuOpen ? 'block' : 'hidden'}`}>
                         {menuItems}
                     </ul>
                 </div>
