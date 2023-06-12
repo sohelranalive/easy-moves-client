@@ -11,7 +11,7 @@ const UserHome = () => {
 
     return (
         <div className="w-10/12 mx-auto">
-            <h1 className="text-3xl text-center underline">Your All Selected Classes</h1>
+            <h1 className="text-3xl text-center underline">Welcome to Dashboard</h1>
             <br />
             <div className="flex justify-between mt-8 text-white">
                 <Link to='/dashboard/user-enrolled-class'>

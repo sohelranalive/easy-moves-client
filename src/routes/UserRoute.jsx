@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import useUser from "../hooks/useUser";
+import LoaderSpinner from "../components/LoaderSpinner/LoaderSpinner";
 
 const UserRoute = ({ children }) => {
 
@@ -8,7 +9,8 @@ const UserRoute = ({ children }) => {
     const [userStats, isUserLoading] = useUser()
 
     if (loading || isUserLoading) {
-        return <progress className="progress w-56"></progress>
+        // return <progress className="progress w-56"></progress>
+        return <LoaderSpinner></LoaderSpinner>
     }
 
     if (user && userStats) {

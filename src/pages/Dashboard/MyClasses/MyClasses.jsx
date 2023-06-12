@@ -7,11 +7,14 @@ const MyClasses = () => {
     console.log(instructorStats);
 
     return (
-        <div>
-            <h1>Total Class: {instructorStats?.length}</h1>
-            <div className="grid grid-cols-3 gap-4">
-                {instructorStats?.map(info => <ClassCard key={info._id} info={info}></ClassCard>)}
-            </div >
+        <div className="w-10/12 mx-auto">
+            <h1 className="text-3xl text-center underline">Your All Classes</h1>
+            <br />
+            <div className="mt-8">
+                <div className="grid grid-cols-3 gap-4">
+                    {instructorStats?.map(info => <ClassCard key={info._id} info={info}></ClassCard>)}
+                </div >
+            </div>
         </div>
     );
 };

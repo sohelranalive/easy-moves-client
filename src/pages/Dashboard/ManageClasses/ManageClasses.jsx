@@ -6,9 +6,10 @@ const ManageClasses = () => {
     const [adminStats] = useAdmin()
 
     return (
-        <div>
-            <h1>Total Number of Class: {adminStats?.classResult.length}</h1>
-            <div>
+        <div className="w-10/12 mx-auto">
+            <h1 className="text-3xl text-center underline">Manage All Classes Added By Instructor</h1>
+            <br />
+            <div className="mt-8">
 
                 <div className="overflow-x-auto">
                     <table className="table">

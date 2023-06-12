@@ -4,7 +4,7 @@
   <img src="public/logo.png" alt="Logo" style="display: block; margin: 0 auto; height: 200px">
 </p>
 
-# _EasyMoves_
+# _EasyMoves (Features)_
 * An interactive Full stack MERN Application for dance class. This website basically targeted the students. In this application a normal user will be able to see different kind of classes and instructors details with some amazing functionality.
 
 * An authentication system added for all users(Student, Instructor, Admin). Three roles will be able to play three different kind of roles based on their authority.
@@ -17,13 +17,14 @@
 
 * For registration user can use email or google login.
 
+
 # _Technology & Packages_
 
-**MarkUP Language:** HTML, Style: CSS, Tailwind, DaisyUI.
+* **MarkUP Language:** HTML, Style: CSS, Tailwind, DaisyUI.
 
-**Framework:** React JS.
+* **Framework:** React JS.
 
-**Packages:** Firebase, Stripe, Marquee, Framer Motion, Axio, Lottie-React, React-Hook-Form, Sweet Alert, Swipper and manymore. 
+* **Packages:** Firebase, Stripe, Marquee, Framer Motion, Axio, Lottie-React, React-Hook-Form, Sweet Alert, Swipper and manymore. 
 
 
 # _Live Website Link:_ 
@@ -40,4 +41,4 @@ https://easy-moves-bb7bc.web.app/
 **This code this pushed on github for presenting my assignment. Do not use it for commercial or personal purpose without proper permission from author.**
 
 
-@Sohel Rana
+**@Sohel Rana**

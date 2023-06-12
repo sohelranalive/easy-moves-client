@@ -4,8 +4,10 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { FaHome } from 'react-icons/fa';
 import { VscDiffAdded } from 'react-icons/vsc';
-import { SiGoogleclassroom } from 'react-icons/Si';
+import { SiGoogleclassroom, SiAdminer } from 'react-icons/Si';
 import { IoWalletSharp } from 'react-icons/io5';
+import { MdManageAccounts, MdLibraryAddCheck } from 'react-icons/md';
+import { BiObjectsHorizontalLeft } from 'react-icons/bi';
 
 
 const Dashboard = () => {
@@ -15,15 +17,29 @@ const Dashboard = () => {
     const [level, setLevel] = useState('')
 
     useEffect(() => {
-        if (!user) {
-            return
+        if (user) {
+            fetch(`https://b7a12-summer-camp-server-side-sohelranalive.vercel.app/user/level?email=${user?.email}`)
+                .then(res => res.json())
+                .then(data => {
+                    // setLevel(data.level)
+
+                    if (data.level) {
+                        setLevel(data.level)
+
+                        if (level == 'user') {
+                            return navigate('/dashboard/user-home')
+                        }
+                        if (level == 'admin') {
+                            return navigate('/dashboard/admin-home')
+                        }
+                        if (level == 'instructor') {
+                            return navigate('/dashboard/instructor-home')
+                        }
+                    }
+
+                })
         }
-        fetch(`https://b7a12-summer-camp-server-side-sohelranalive.vercel.app/user/level?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => {
-                setLevel(data.level)
-            })
-    }, [user])
+    }, [user, level, navigate])
 
     const handleLogOut = () => {
         userLogOut()
@@ -33,17 +49,17 @@ const Dashboard = () => {
             .catch(error => console.log(error.message))
     }
 
-    useEffect(() => {
-        if (level == 'user') {
-            return navigate('/dashboard/user-home')
-        }
-        if (level == 'admin') {
-            return navigate('/dashboard/admin-home')
-        }
-        if (level == 'instructor') {
-            return navigate('/dashboard/instructor-home')
-        }
-    }, [level, navigate]);
+    // useEffect(() => {
+    //     if (level == 'user') {
+    //         return navigate('/dashboard/user-home')
+    //     }
+    //     if (level == 'admin') {
+    //         return navigate('/dashboard/admin-home')
+    //     }
+    //     if (level == 'instructor') {
+    //         return navigate('/dashboard/instructor-home')
+    //     }
+    // }, [level, navigate]);
 
 
     return (
@@ -99,12 +115,15 @@ const Dashboard = () => {
                             {level == 'admin' &&
                                 <>
                                     <li className="flex items-center border-b-4 border-slate-900">
+                                        <FaHome className="mr-2 border-b-4 border-slate-900 text-2xl" />
                                         <NavLink to='/dashboard/admin-home' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Admin Home</NavLink>
                                     </li>
                                     <li className="flex items-center border-b-4 border-slate-900">
+                                        <SiAdminer className="mr-2 border-b-4 border-slate-900 text-2xl" />
                                         <NavLink to='/dashboard/manage-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Manage Classes</NavLink>
                                     </li>
                                     <li className="flex items-center border-b-4 border-slate-900">
+                                        <MdManageAccounts className="mr-2 border-b-4 border-slate-900 text-2xl" />
                                         <NavLink to='/dashboard/manage-user' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Manage Users</NavLink>
                                     </li>
                                 </>
@@ -113,12 +132,15 @@ const Dashboard = () => {
                             {level == 'instructor' &&
                                 <>
                                     <li className="flex items-center border-b-4 border-slate-900">
+                                        <FaHome className="mr-2 border-b-4 border-slate-900 text-2xl" />
                                         <NavLink to='/dashboard/instructor-home' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Instructor Home</NavLink>
                                     </li>
                                     <li className="flex items-center border-b-4 border-slate-900">
+                                        <MdLibraryAddCheck className="mr-2 border-b-4 border-slate-900 text-2xl" />
                                         <NavLink to='/dashboard/add-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Add a Class</NavLink>
                                     </li>
                                     <li className="flex items-center border-b-4 border-slate-900">
+                                        <BiObjectsHorizontalLeft className="mr-2 border-b-4 border-slate-900 text-2xl" />
                                         <NavLink to='/dashboard/my-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>My Classes</NavLink>
                                     </li>
                                 </>

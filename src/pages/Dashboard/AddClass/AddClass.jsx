@@ -63,10 +63,10 @@ const AddClass = () => {
     }
 
     return (
-        <div>
-            <div className="border-2 border-[#AB1318] px-14 py-8 rounded-xl shadow-inner bg-slate-300">
-                <h1 className="underline text-3xl text-center py-2">Add a new Class</h1>
-
+        <div className="w-10/12 mx-auto">
+            <h1 className="text-3xl text-center underline">Add A New Class</h1>
+            <br />
+            <div className="mt-8 bg-slate-200 p-8 rounded-md">
                 <form onSubmit={handleSubmit(onSubmit)}>
 
                     {/* Instructor Name and Email */}
