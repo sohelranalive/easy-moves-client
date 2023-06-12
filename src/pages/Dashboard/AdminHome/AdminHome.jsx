@@ -32,7 +32,7 @@ const AdminHome = () => {
                 </Link>
             </div>
             <div className="flex justify-between mt-8 text-white">
-                <Link to='/dashboard/user-enrolled-class'>
+                <Link to='/dashboard/manage-class'>
                     <div className="bg-lime-400 rounded-lg p-8 h-full">
                         <h2 className="text-2xl">Total Approved Class</h2>
                         <h1 className="text-5xl">{totalApprovedClass?.length}</h1>
@@ -44,7 +44,7 @@ const AdminHome = () => {
                         <h1 className="text-5xl">{totalPendingClass?.length}</h1>
                     </div>
                 </Link>
-                <Link to='/dashboard/payment-history'>
+                <Link to='/dashboard/manage-class'>
                     <div className="bg-amber-400 rounded-lg p-8 h-full">
                         <h2 className="text-2xl">Total Denied Class</h2>
                         <h1 className="text-5xl">{totalDeniedClass?.length}</h1>

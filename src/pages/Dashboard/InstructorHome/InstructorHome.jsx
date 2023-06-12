@@ -20,26 +20,26 @@ const InstructorHome = () => {
             <h1 className="text-3xl text-center underline">Welcome to Dashboard</h1>
             <br />
             <div className="grid grid-cols-3 mt-8 gap-4 text-white">
-                <Link to='/dashboard/user-enrolled-class'>
+                <Link to='/dashboard/my-class'>
                     <div className="bg-lime-400 rounded-lg p-8 h-full">
                         <h2 className="text-2xl">Total Added Class</h2>
                         <h1 className="text-5xl">{totalClassAdded}</h1>
                     </div>
                 </Link>
-                <Link to='/dashboard/payment-history'>
+                <Link to='/dashboard/my-class'>
                     <div className="bg-purple-400 rounded-lg p-8 h-full">
                         <h2 className="text-2xl">Total Approved Class</h2>
                         <h1 className="text-5xl">$ {totalApprovedClass?.length}</h1>
                     </div>
                 </Link>
 
-                <Link to='/dashboard/user-selected-class'>
+                <Link to='/dashboard/my-class'>
                     <div className="bg-orange-400 rounded-lg p-8 h-full">
                         <h2 className="text-2xl">Total Pending Class</h2>
                         <h1 className="text-5xl">{totalPendingClass?.length}</h1>
                     </div>
                 </Link>
-                <Link to='/dashboard/payment-history'>
+                <Link to='/dashboard/my-class'>
                     <div className="bg-amber-400 rounded-lg p-8 h-full">
                         <h2 className="text-2xl">Total Denied Class</h2>
                         <h1 className="text-5xl">$ {totalDeniedClass?.length}</h1>
