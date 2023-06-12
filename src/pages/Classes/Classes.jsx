@@ -16,7 +16,7 @@ const Classes = () => {
         if (!user) {
             return
         }
-        fetch(`http://localhost:5000/user/level?email=${user?.email}`)
+        fetch(`https://b7a12-summer-camp-server-side-sohelranalive.vercel.app/user/level?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setUserLevel(data.level)
@@ -26,7 +26,7 @@ const Classes = () => {
     const [classes, setClasses] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/classes')
+        fetch('https://b7a12-summer-camp-server-side-sohelranalive.vercel.app/classes')
             .then(res => res.json())
             .then(data => {
                 setClasses(data);

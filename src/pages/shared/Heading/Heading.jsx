@@ -1,6 +1,6 @@
 import Container from "../../../components/Container/Container";
 import logo from '../../../assets/easy-moves.png'
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RxCross1 } from 'react-icons/rx';
@@ -56,10 +56,10 @@ const Heading = () => {
         <div className="py-2 border-b-2 shadow-sm relative">
             <Container>
                 <div className="flex justify-between items-center">
-                    <div className="flex items-center">
+                    <Link to='/' className="flex items-center">
                         <img src={logo} alt="logo" height={70} width={70} />
                         <h1 className="ms-4 text-4xl font-bold">Easy<span className="text-[#AB1318]">Moves</span></h1>
-                    </div>
+                    </Link>
                     <div>
                         <ul className="hidden md:inline-flex items-center space-x-4 font-bold">
                             {menuItems}

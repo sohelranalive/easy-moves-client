@@ -26,12 +26,12 @@ const GoogleLogin = ({ color, from }) => {
                     role: 'user'
                 }
 
-                const urlToFindUserFromDB = `http://localhost:5000/user?email=${email}`
+                const urlToFindUserFromDB = `https://b7a12-summer-camp-server-side-sohelranalive.vercel.app/user?email=${email}`
                 fetch(urlToFindUserFromDB)
                     .then(res => res.json())
                     .then(data => {
                         if (!data.userExist) {
-                            fetch('http://localhost:5000/user', {
+                            fetch('https://b7a12-summer-camp-server-side-sohelranalive.vercel.app/user', {
                                 method: 'POST',
                                 headers: {
                                     'content-type': 'application/json'

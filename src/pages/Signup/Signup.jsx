@@ -72,7 +72,7 @@ const Signup = () => {
                                 address: data.address,
                                 role: 'user'
                             }
-                            fetch('http://localhost:5000/user', {
+                            fetch('https://b7a12-summer-camp-server-side-sohelranalive.vercel.app/user', {
                                 method: 'POST',
                                 headers: {
                                     'content-type': 'application/json'
