@@ -4,6 +4,7 @@ import '../Classes/Classes.css'
 import { useEffect } from 'react';
 import SingleClassCard from './SingleClassCard';
 import useAuth from '../../hooks/useAuth';
+import LoaderSpinner from '../../components/LoaderSpinner/LoaderSpinner';
 
 
 const Classes = () => {
@@ -11,6 +12,7 @@ const Classes = () => {
     const { user } = useAuth()
 
     const [userLevel, setUserLevel] = useState('')
+    const [dataLoading, setDataLoading] = useState(false)
 
     useEffect(() => {
         if (!user) {
@@ -26,10 +28,12 @@ const Classes = () => {
     const [classes, setClasses] = useState([])
 
     useEffect(() => {
+        setDataLoading(true)
         fetch('https://b7a12-summer-camp-server-side-sohelranalive.vercel.app/classes')
             .then(res => res.json())
             .then(data => {
                 setClasses(data);
+                setDataLoading(false)
             })
     }, [])
 
@@ -41,15 +45,18 @@ const Classes = () => {
                 <h1 className="text-2xl">We have variety of classes, Choose classes as per your interest</h1>
             </div>
             <Container>
-                <div className="grid md:grid-cols-3 gap-8 py-12">
-                    {
-                        classes.map(singleClass => <SingleClassCard
-                            key={singleClass._id}
-                            singleClass={singleClass}
-                            userLevel={userLevel}>
-                        </SingleClassCard>)
-                    }
-                </div>
+                {dataLoading
+                    ? <LoaderSpinner></LoaderSpinner>
+                    : <div className="grid md:grid-cols-3 gap-8 py-12">
+                        {
+                            classes.map(singleClass => <SingleClassCard
+                                key={singleClass._id}
+                                singleClass={singleClass}
+                                userLevel={userLevel}>
+                            </SingleClassCard>)
+                        }
+                    </div>
+                }
             </Container>
         </div>
     );

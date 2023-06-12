@@ -29,7 +29,7 @@ const ManageClasses = () => {
                         <tbody>
                             {/* row will show here from SingleUserData Component */}
                             {
-                                adminStats?.classResult.map((singleClass, index) => <SingleClass
+                                adminStats?.classResult?.map((singleClass, index) => <SingleClass
                                     key={singleClass._id}
                                     singleClass={singleClass}
                                     index={index}>

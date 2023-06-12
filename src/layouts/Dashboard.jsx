@@ -21,8 +21,6 @@ const Dashboard = () => {
             fetch(`https://b7a12-summer-camp-server-side-sohelranalive.vercel.app/user/level?email=${user?.email}`)
                 .then(res => res.json())
                 .then(data => {
-                    // setLevel(data.level)
-
                     if (data.level) {
                         setLevel(data.level)
 
@@ -48,19 +46,6 @@ const Dashboard = () => {
             })
             .catch(error => console.log(error.message))
     }
-
-    // useEffect(() => {
-    //     if (level == 'user') {
-    //         return navigate('/dashboard/user-home')
-    //     }
-    //     if (level == 'admin') {
-    //         return navigate('/dashboard/admin-home')
-    //     }
-    //     if (level == 'instructor') {
-    //         return navigate('/dashboard/instructor-home')
-    //     }
-    // }, [level, navigate]);
-
 
     return (
         <div className="w-full flex flex-col">

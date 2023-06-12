@@ -2,7 +2,6 @@ import Swal from "sweetalert2";
 import useAdmin from "../../../hooks/useAdmin";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
-//TODO: Fetch data from class and instructor, then filter out pending, approval, denied.
 
 const SingleUserData = ({ singleUser }) => {
 

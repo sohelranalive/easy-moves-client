@@ -15,7 +15,7 @@ const InstructorHome = () => {
                 <Link to='/dashboard/instructor-home'>
                     <div className="bg-lime-400 rounded-lg p-8 h-full">
                         <h2 className="text-2xl">Approved Classes</h2>
-                        <h1 className="text-5xl">{instructorStats.length}</h1>
+                        <h1 className="text-5xl">{instructorStats?.length}</h1>
                     </div>
                 </Link>
             </div>
