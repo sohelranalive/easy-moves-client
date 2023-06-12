@@ -7,8 +7,8 @@ const AdminHome = () => {
     // const { classResult } = adminStats
     console.log(adminStats);
 
-    const totalRegisteredStudents = adminStats?.userResult?.filter(item => item.role != 'admin' && 'instructor')
-    const totalRegisteredInstructor = adminStats?.userResult?.filter(item => item.role == 'admin' && 'user')
+    const totalRegisteredStudents = adminStats?.userResult?.filter(item => item.role == 'user')
+    const totalRegisteredInstructor = adminStats?.userResult?.filter(item => item.role == 'instructor')
     const totalApprovedClass = adminStats?.classResult?.filter(item => item.status == 'approved')
     const totalPendingClass = adminStats?.classResult?.filter(item => item.status == 'pending')
     const totalDeniedClass = adminStats?.classResult?.filter(item => item.status == 'denied')
