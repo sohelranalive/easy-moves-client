@@ -2,6 +2,10 @@
 
 ![Logo](public/logo.png)
 
+<p align="center">
+  <img src="public/logo.png" alt="Logo" style="display: block; margin: 0 auto;">
+</p>
+
 # _Baby Soldier_
 **An interactive web Application for selling gun toys. In this application a normal user will be able to see different kind of products. They will be able to filter it by sub-category on onClick. They will be able to search product by product name.**
 
