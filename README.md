@@ -1,6 +1,6 @@
 # b712-summer-camp-client-side-sohelranalive
 
-![Logo](./logo.png)
+![Logo](public/logo.png)
 
 # _Baby Soldier_
 **An interactive web Application for selling gun toys. In this application a normal user will be able to see different kind of products. They will be able to filter it by sub-category on onClick. They will be able to search product by product name.**
