@@ -13,7 +13,7 @@ const Payment = () => {
     const payableItem = userStats.selectedClassResult.find(item => item._id == id)
     // console.log(payableAmount);
     const price = parseFloat((payableItem.price).toFixed(2))
-    console.log(price);
+    // console.log(price);
     // console.log(userStats.selectedClassResult);
 
     return (

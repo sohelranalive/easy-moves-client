@@ -4,7 +4,7 @@ import ClassCard from "./ClassCard";
 const MyClasses = () => {
 
     const [instructorStats] = useInstructor()
-    console.log(instructorStats);
+    // console.log(instructorStats);
 
     return (
         <div className="w-10/12 mx-auto">

@@ -25,7 +25,7 @@ const CheckoutForm = ({ price, payableItem }) => {
         if (price > 0) {
             axiosSecure.post('/create-payment-intent', { price })
                 .then(res => {
-                    console.log(res.data.clientSecret);
+                    // console.log(res.data.clientSecret);
                     setClientSecret(res.data.clientSecret)
                 })
         }
@@ -50,7 +50,7 @@ const CheckoutForm = ({ price, payableItem }) => {
         })
 
         if (error) {
-            console.log('[error]', error);
+            // console.log('[error]', error);
             setCardError(error.message)
         } else {
             console.log('[PaymentMethod]', paymentMethod);
@@ -91,7 +91,7 @@ const CheckoutForm = ({ price, payableItem }) => {
             axiosSecure.post('/user/payments', payment)
                 .then(res => {
                     if (res.data) {
-                        console.log(res.data);
+                        // console.log(res.data);
                         if (res.data) {
                             Swal.fire({
                                 title: 'Payment Successful',

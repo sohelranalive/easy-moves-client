@@ -4,7 +4,7 @@ import useUser from "../../../hooks/useUser";
 const UserHome = () => {
 
     const [userStats] = useUser()
-    console.log(userStats);
+    // console.log(userStats);
     const selectedClass = userStats.selectedClassResult.length;
     const enrolledClasses = userStats.enrolledClassResult.length;
     const totalPaidAmount = userStats.usersAllPayment.reduce((sum, item) => item.price + sum, 0)

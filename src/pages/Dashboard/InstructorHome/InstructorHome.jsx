@@ -5,7 +5,7 @@ const InstructorHome = () => {
 
     const [instructorStats] = useInstructor()
 
-    console.log(instructorStats);
+    // console.log(instructorStats);
 
     return (
         <div className="w-10/12 mx-auto">

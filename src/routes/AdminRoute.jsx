@@ -8,7 +8,7 @@ const AdminRoute = ({ children }) => {
     const { user, loading } = useAuth()
     const [adminStats, isAdminLoading] = useAdmin()
 
-    console.log('Is admin loading 10', isAdminLoading);
+    // console.log('Is admin loading 10', isAdminLoading);
 
     if (loading || isAdminLoading) {
         // return <progress className="progress w-56"></progress>

@@ -6,7 +6,7 @@ const UserEnrolledClass = () => {
     const [userStats] = useUser()
     const enrolledClasses = userStats.enrolledClassResult;
 
-    console.log(enrolledClasses);
+    // console.log(enrolledClasses);
 
     return (
         <div className="w-10/12 mx-auto">

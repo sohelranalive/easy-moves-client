@@ -8,7 +8,7 @@ const GoogleLogin = ({ color, from }) => {
 
     const navigate = useNavigate()
     const target = from || '/'
-    console.log(target);
+    // console.log(target);
 
 
     const handleGoogleLogin = () => {
@@ -40,7 +40,7 @@ const GoogleLogin = ({ color, from }) => {
                             })
                                 .then(res => res.json())
                                 .then(data => {
-                                    console.log(data);
+                                    // console.log(data);
                                     if (data.insertedId) {
                                         navigate(target)
                                     }

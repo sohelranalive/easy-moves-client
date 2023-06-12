@@ -5,7 +5,7 @@ const AdminHome = () => {
 
     const [adminStats] = useAdmin()
     // const { classResult } = adminStats
-    console.log(adminStats);
+    // console.log(adminStats);
 
     const totalRegisteredStudents = adminStats?.userResult?.filter(item => item.role == 'user')
     const totalRegisteredInstructor = adminStats?.userResult?.filter(item => item.role == 'instructor')

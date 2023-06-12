@@ -17,7 +17,7 @@ const AddClass = () => {
 
     const onSubmit = data => {
 
-        console.log(data);
+        // console.log(data);
         const formData = new FormData()
         formData.append('image', data.classPhoto[0])
 
@@ -30,37 +30,38 @@ const AddClass = () => {
             .then(res => res.json())
             .then(imageData => {
                 if (imageData) {
-                    console.log(imageData);
+                    // console.log(imageData);
                     classPhotoURL = imageData.data.display_url;
                 }
-                const classInfo = {
-                    className: data.className,
-                    classPhoto: classPhotoURL,
-                    instructorName: user?.displayName,
-                    instructorEmail: user?.email,
-                    availableSeats: parseFloat(data.seats),
-                    price: parseFloat(data.price),
-                    status: 'pending',
-                    totalEnrolled: (0),
-                    totalSeats: parseFloat(data.seats)
-                }
-
-                axiosSecure.post('/instructor/addClass', classInfo)
-                    .then(classData => {
-                        if (classData.data.insertedId) {
-                            Swal.fire({
-                                position: 'top-center',
-                                icon: 'success',
-                                title: 'Class added successful',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                            reset()
-                            refetch()
-                        }
-                    })
             })
-    }
+
+        const classInfo = {
+            className: data.className,
+            classPhoto: classPhotoURL,
+            instructorName: user?.displayName,
+            instructorEmail: user?.email,
+            availableSeats: parseFloat(data.seats),
+            price: parseFloat(data.price),
+            status: 'pending',
+            totalEnrolled: (0),
+            totalSeats: parseFloat(data.seats)
+        }
+
+        axiosSecure.post('/instructor/addClass', classInfo)
+            .then(classData => {
+                if (classData.data.insertedId) {
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'success',
+                        title: 'Class added successful',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    reset()
+                    refetch()
+                }
+            })
+    };
 
     return (
         <div className="w-10/12 mx-auto">

@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import GoogleLogin from "../../components/GoogleLogin/GoogleLogin";
 
+
 const image_hosting_server_url_key = import.meta.env.VITE_IMAGE_HOSTING_SERVER_API
 const image_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_server_url_key}`
 
@@ -51,7 +52,7 @@ const Signup = () => {
             .then(res => res.json())
             .then(imageData => {
                 if (imageData) {
-                    console.log(imageData);
+                    // console.log(imageData);
                     photoURL = imageData.data.display_url;
                 }
             })
@@ -81,7 +82,7 @@ const Signup = () => {
                             })
                                 .then(res => res.json())
                                 .then(data => {
-                                    console.log(data);
+                                    // console.log(data);
                                     if (data.insertedId) {
                                         userLogOut()
                                             .then(() => { })
