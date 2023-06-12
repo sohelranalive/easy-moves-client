@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
 
-const CheckoutForm = ({ price, userStats }) => {
+const CheckoutForm = ({ price, payableItem }) => {
 
     const { user } = useAuth()
     const [, , refetch] = useUser()
@@ -84,8 +84,8 @@ const CheckoutForm = ({ price, userStats }) => {
                 price,
                 date: new Date(),
                 transactionId: paymentIntent.id,
-                selectedClassIds: userStats.selectedClassResult.map(selectedClass => selectedClass._id),
-                classesIds: userStats.selectedClassResult.map(singleClass => singleClass.classId)
+                selectedClassId: payableItem._id,
+                classesId: payableItem.classId
             }
 
             axiosSecure.post('/user/payments', payment)

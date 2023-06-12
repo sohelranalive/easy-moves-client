@@ -5,7 +5,7 @@ import SingleClassRow from "./SingleClassRow";
 const UserSelectedClass = () => {
 
     const [userStats, , refetch] = useUser()
-    const payableAmount = userStats.selectedClassResult.reduce((sum, item) => item.price + sum, 0)
+    // const payableAmount = userStats.selectedClassResult.reduce((sum, item) => item.price + sum, 0)
 
     return (
         <div className="w-10/12 mx-auto">
@@ -13,13 +13,13 @@ const UserSelectedClass = () => {
             <br />
             <div className="mt-8">
                 {/* Information summary */}
-                <div className="text-end">
+                {/* <div className="text-end">
                     <Link to='/dashboard/payment'>
                         <button className="btn btn-primary btn-sm">Proceed to Pay</button>
                     </Link>
-                </div>
+                </div> */}
 
-                <br /><br />
+                <br />
                 {/* Table will show below */}
                 <div className="overflow-x-auto">
                     <table className="table">
@@ -46,11 +46,11 @@ const UserSelectedClass = () => {
                             }
                         </tbody>
                     </table>
-                    <hr className="border-2 border-green-600" />
+                    {/* <hr className="border-2 border-green-600" />
                     <div className="flex justify-between items-center text-2xl mb-12">
                         <h1>Total Number of Class: {userStats.selectedClassResult.length}</h1>
                         <h1 className="mr-48">Total Amount: $ {payableAmount.toFixed(2)}</h1>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

@@ -2,14 +2,19 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from "./CheckoutForm";
 import useUser from "../../../hooks/useUser";
+import { useParams } from "react-router-dom";
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_KEY)
 
 const Payment = () => {
-
+    const { id } = useParams()
     const [userStats] = useUser()
-    const payableAmount = userStats.selectedClassResult.reduce((sum, item) => item.price + sum, 0)
-    const price = parseFloat(payableAmount.toFixed(2))
+    // const payableAmount = userStats.selectedClassResult.reduce((sum, item) => item.price + sum, 0)
+    const payableItem = userStats.selectedClassResult.find(item => item._id == id)
+    // console.log(payableAmount);
+    const price = parseFloat((payableItem.price).toFixed(2))
+    console.log(price);
+    // console.log(userStats.selectedClassResult);
 
     return (
         <div className="w-11/12 mx-auto">
@@ -17,7 +22,7 @@ const Payment = () => {
             <br />
             <Elements stripe={stripePromise}>
                 <div className="border-2 border-green-400 py-8 px-4 rounded-md shadow-2xl mt-12 mb-16">
-                    <CheckoutForm userStats={userStats} price={price} />
+                    <CheckoutForm payableItem={payableItem} price={price} />
                 </div>
             </Elements>
 

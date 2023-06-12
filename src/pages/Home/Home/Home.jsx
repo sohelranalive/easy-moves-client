@@ -1,3 +1,4 @@
+import Association from "../Association/Association";
 import Banner from "../Banner/Banner";
 import Features from "../Features/Features";
 import PopularClass from "../PopularClass/PopularClass";
@@ -10,6 +11,7 @@ const Home = () => {
             <Features></Features>
             <PopularClass></PopularClass>
             <PopularInstructor></PopularInstructor>
+            <Association></Association>
         </div>
     );
 };

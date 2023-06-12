@@ -6,7 +6,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const SingleClassCard = ({ singleClass, userLevel }) => {
 
-    const { _id, classPhoto, className, instructorName, availableSeats, totalEnrolled, price } = singleClass;
+    const { _id, classPhoto, className, instructorName, availableSeats, price } = singleClass;
 
     const { user } = useAuth()
     const navigate = useNavigate()
@@ -57,12 +57,11 @@ const SingleClassCard = ({ singleClass, userLevel }) => {
             <figure><img src={classPhoto} alt="Class Image" className="h-60 w-full" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{className}</h2>
-                <p>Instructor: {instructorName}</p>
-                <p>Set Remaining: {availableSeats}</p>
-                <p>Total Enrolled: {totalEnrolled}</p>
-                <p>Class Fees: {price}</p>
+                <p className="font-bold">Instructor: {instructorName}</p>
+                <p className="font-bold">Set Remaining: {availableSeats}</p>
+                <p className="text-xl font-bold">Class Fees: ${price}</p>
                 <div className="card-actions justify-end">
-                    <button disabled={availableSeats <= 0 || userLevel == 'admin' || userLevel == 'instructor'} onClick={handleAddClass} className="btn btn-primary">Take Class</button>
+                    <button disabled={availableSeats <= 0 || userLevel == 'admin' || userLevel == 'instructor'} onClick={handleAddClass} className="px-3 rounded-lg py-3 bg-slate-900 text-white">Take Class</button>
                 </div>
             </div>
         </div >
