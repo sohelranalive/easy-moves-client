@@ -32,33 +32,33 @@ const AddClass = () => {
                 if (imageData) {
                     // console.log(imageData);
                     classPhotoURL = imageData.data.display_url;
-                }
-            })
 
-        const classInfo = {
-            className: data.className,
-            classPhoto: classPhotoURL,
-            instructorName: user?.displayName,
-            instructorEmail: user?.email,
-            availableSeats: parseFloat(data.seats),
-            price: parseFloat(data.price),
-            status: 'pending',
-            totalEnrolled: (0),
-            totalSeats: parseFloat(data.seats)
-        }
+                    const classInfo = {
+                        className: data.className,
+                        classPhoto: classPhotoURL,
+                        instructorName: user?.displayName,
+                        instructorEmail: user?.email,
+                        availableSeats: parseFloat(data.seats),
+                        price: parseFloat(data.price),
+                        status: 'pending',
+                        totalEnrolled: (0),
+                        totalSeats: parseFloat(data.seats)
+                    }
 
-        axiosSecure.post('/instructor/addClass', classInfo)
-            .then(classData => {
-                if (classData.data.insertedId) {
-                    Swal.fire({
-                        position: 'top-center',
-                        icon: 'success',
-                        title: 'Class added successful',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    reset()
-                    refetch()
+                    axiosSecure.post('/instructor/addClass', classInfo)
+                        .then(classData => {
+                            if (classData.data.insertedId) {
+                                Swal.fire({
+                                    position: 'top-center',
+                                    icon: 'success',
+                                    title: 'Class added successful',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                                reset()
+                                refetch()
+                            }
+                        })
                 }
             })
     };

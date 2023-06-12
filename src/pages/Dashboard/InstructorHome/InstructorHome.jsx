@@ -7,15 +7,42 @@ const InstructorHome = () => {
 
     // console.log(instructorStats);
 
+    const totalClassAdded = instructorStats.length
+    // console.log(totalClassAdded);
+    const totalApprovedClass = instructorStats?.filter(item => item.status == 'approved')
+    // console.log('approved', totalApprovedClass);
+    const totalPendingClass = instructorStats?.filter(item => item.status == 'pending')
+    const totalDeniedClass = instructorStats?.filter(item => item.status == 'denied')
+
+
     return (
         <div className="w-10/12 mx-auto">
             <h1 className="text-3xl text-center underline">Welcome to Dashboard</h1>
             <br />
-            <div className="flex justify-between mt-8 text-white">
-                <Link to='/dashboard/instructor-home'>
+            <div className="grid grid-cols-3 mt-8 gap-4 text-white">
+                <Link to='/dashboard/user-enrolled-class'>
                     <div className="bg-lime-400 rounded-lg p-8 h-full">
-                        <h2 className="text-2xl">Approved Classes</h2>
-                        <h1 className="text-5xl">{instructorStats?.length}</h1>
+                        <h2 className="text-2xl">Total Added Class</h2>
+                        <h1 className="text-5xl">{totalClassAdded}</h1>
+                    </div>
+                </Link>
+                <Link to='/dashboard/payment-history'>
+                    <div className="bg-purple-400 rounded-lg p-8 h-full">
+                        <h2 className="text-2xl">Total Approved Class</h2>
+                        <h1 className="text-5xl">$ {totalApprovedClass?.length}</h1>
+                    </div>
+                </Link>
+
+                <Link to='/dashboard/user-selected-class'>
+                    <div className="bg-orange-400 rounded-lg p-8 h-full">
+                        <h2 className="text-2xl">Total Pending Class</h2>
+                        <h1 className="text-5xl">{totalPendingClass?.length}</h1>
+                    </div>
+                </Link>
+                <Link to='/dashboard/payment-history'>
+                    <div className="bg-amber-400 rounded-lg p-8 h-full">
+                        <h2 className="text-2xl">Total Denied Class</h2>
+                        <h1 className="text-5xl">$ {totalDeniedClass?.length}</h1>
                     </div>
                 </Link>
             </div>
