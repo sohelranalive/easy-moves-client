@@ -21,6 +21,7 @@ import Instructor from "../pages/Instructor/Instructor";
 import Classes from "../pages/Classes/Classes";
 import Payment from "../pages/Dashboard/Payments/Payment";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import UserPayments from "../pages/Dashboard/UserPayments/UserPayments";
 
 const router = createBrowserRouter([
     {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
             {
                 path: 'payment',
                 element: <UserRoute><Payment></Payment></UserRoute>
+            },
+            {
+                path: 'payment-history',
+                element: <UserRoute><UserPayments></UserPayments></UserRoute>
             },
             {
                 path: 'admin-home',

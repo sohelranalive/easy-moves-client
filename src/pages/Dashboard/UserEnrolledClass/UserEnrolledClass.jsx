@@ -9,15 +9,17 @@ const UserEnrolledClass = () => {
     console.log(enrolledClasses);
 
     return (
-        <div className="w-11/12 mx-auto">
+        <div className="w-10/12 mx-auto">
             <h1 className="text-3xl text-center underline">Your All Enrolled Classes</h1>
             <br />
-            <div className="grid grid-cols-2 gap-4">
-                {enrolledClasses?.map(enrolledClass => <EnrolledClassCard
-                    key={enrolledClass._id}
-                    enrolledClass={enrolledClass}>
-                </EnrolledClassCard>)}
-            </div >
+            <div className="mt-8">
+                <div className="grid grid-cols-2 gap-8">
+                    {enrolledClasses?.map(enrolledClass => <EnrolledClassCard
+                        key={enrolledClass._id}
+                        enrolledClass={enrolledClass}>
+                    </EnrolledClassCard>)}
+                </div >
+            </div>
         </div>
     );
 };

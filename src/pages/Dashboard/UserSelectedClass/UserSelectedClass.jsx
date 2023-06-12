@@ -8,10 +8,10 @@ const UserSelectedClass = () => {
     const payableAmount = userStats.selectedClassResult.reduce((sum, item) => item.price + sum, 0)
 
     return (
-        <div className="w-11/12 mx-auto">
+        <div className="w-10/12 mx-auto">
             <h1 className="text-3xl text-center underline">Your All Selected Classes</h1>
             <br />
-            <div>
+            <div className="mt-8">
                 {/* Information summary */}
                 <div className="text-end">
                     <Link to='/dashboard/payment'>
@@ -48,7 +48,7 @@ const UserSelectedClass = () => {
                     </table>
                     <hr className="border-2 border-green-600" />
                     <div className="flex justify-between items-center text-2xl mb-12">
-                        <h1>Total Number of Class: {userStats.length}</h1>
+                        <h1>Total Number of Class: {userStats.selectedClassResult.length}</h1>
                         <h1 className="mr-48">Total Amount: $ {payableAmount.toFixed(2)}</h1>
                     </div>
                 </div>

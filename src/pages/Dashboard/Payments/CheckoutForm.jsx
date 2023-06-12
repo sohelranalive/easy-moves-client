@@ -4,6 +4,8 @@ import { useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
 import useUser from '../../../hooks/useUser';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 
 const CheckoutForm = ({ price, userStats }) => {
@@ -17,6 +19,7 @@ const CheckoutForm = ({ price, userStats }) => {
     const [clientSecret, setClientSecret] = useState('')
     const [processing, setProcessing] = useState(false)
     const [transactionId, setTransactionId] = useState('')
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (price > 0) {
@@ -90,7 +93,20 @@ const CheckoutForm = ({ price, userStats }) => {
                     if (res.data) {
                         console.log(res.data);
                         if (res.data) {
-                            refetch()
+                            Swal.fire({
+                                title: 'Payment Successful',
+                                icon: 'success',
+                                showCancelButton: false,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: `Done`
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    refetch()
+                                    navigate('/dashboard/user-home')
+                                }
+                            })
+
                         }
                     }
                 })

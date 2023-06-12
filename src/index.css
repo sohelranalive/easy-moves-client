@@ -26,12 +26,8 @@
   @apply border-b-4 border-purple-800
 }
 
-.d-active:hover {}
-
-.d-default {}
-
-.d-default:hover {
-  @apply border-b-4 border-red-800
+.d-default {
+  @apply border-b-4 border-slate-900
 }
 
 .error-bg {

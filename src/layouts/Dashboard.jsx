@@ -2,6 +2,11 @@ import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { useEffect } from "react";
 import { useState } from "react";
+import { FaHome } from 'react-icons/fa';
+import { VscDiffAdded } from 'react-icons/vsc';
+import { SiGoogleclassroom } from 'react-icons/Si';
+import { IoWalletSharp } from 'react-icons/io5';
+
 
 const Dashboard = () => {
 
@@ -42,8 +47,8 @@ const Dashboard = () => {
 
 
     return (
-        <>
-            <div>
+        <div className="w-full flex flex-col">
+            <div className="w-full">
                 <nav className="bg-slate-900 w-full py-4 px-8 z-20 fixed top-0">
                     <div className="flex items-center">
                         <div className="w-1/2 text-white text-start">
@@ -58,56 +63,67 @@ const Dashboard = () => {
                 </nav>
             </div>
 
-            <div className="flex mt-16">
+            <div className="flex mt-16 w-full relative">
 
                 <div className="w-2/12 bg-slate-900 fixed top-0 h-full">
                     <div className="text-white pt-24 pl-8 space-y-4 flex flex-col fixed">
                         <div>
-                            <h1 className="text-xl">Hi, {user.displayName}</h1>
+                            <h1 className="text-xl">Hi, {user?.displayName}</h1>
                         </div>
                         <div className="divider"></div>
-                        {/* Dashboard menu for user */}
-                        {level == 'user' &&
-                            <>
-                                <div>
-                                    <NavLink to='/dashboard/user-home' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>User Home</NavLink>
-                                </div>
-                                <div>
-                                    <NavLink to='/dashboard/user-selected-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Selected Classes</NavLink>
-                                </div>
-                                <div>
-                                    <NavLink to='/dashboard/user-enrolled-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Enrolled Class</NavLink>
-                                </div>
-                            </>
-                        }
-                        {/* Dashboard menu for admin */}
-                        {level == 'admin' &&
-                            <>
-                                <div>
-                                    <NavLink to='/dashboard/admin-home' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Admin Home</NavLink>
-                                </div>
-                                <div>
-                                    <NavLink to='/dashboard/manage-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Manage Classes</NavLink>
-                                </div>
-                                <div>
-                                    <NavLink to='/dashboard/manage-user' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Manage Users</NavLink>
-                                </div>
-                            </>
-                        }
-                        {/* Dashboard menu for Instructor */}
-                        {level == 'instructor' &&
-                            <>
-                                <div>
-                                    <NavLink to='/dashboard/instructor-home' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Instructor Home</NavLink>
-                                </div>
-                                <div>
-                                    <NavLink to='/dashboard/add-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Add a Class</NavLink>
-                                </div>
-                                <div>
-                                    <NavLink to='/dashboard/my-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>My Classes</NavLink>
-                                </div>
-                            </>
-                        }
+                        <ul className="space-y-6">
+                            {/* Dashboard menu for user */}
+                            {level == 'user' &&
+                                <>
+                                    <li className="flex items-center border-b-4 border-slate-900">
+                                        <FaHome className="mr-2 border-b-4 border-slate-900 text-2xl" />
+                                        <NavLink to='/dashboard/user-home' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>
+                                            User Home
+                                        </NavLink>
+                                    </li>
+                                    <li className="flex items-center border-b-4 border-slate-900 ">
+                                        <VscDiffAdded className="mr-2 border-b-4 border-slate-900 text-2xl" />
+                                        <NavLink to='/dashboard/user-selected-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Selected Classes</NavLink>
+                                    </li>
+                                    <li className="flex items-center border-b-4 border-slate-900">
+                                        <SiGoogleclassroom className="mr-2 border-b-4 border-slate-900 text-2xl" />
+                                        <NavLink to='/dashboard/user-enrolled-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Enrolled Class</NavLink>
+                                    </li>
+                                    <li className="flex items-center border-b-4 border-slate-900">
+                                        <IoWalletSharp className="mr-2 border-b-4 border-slate-900 text-2xl" />
+                                        <NavLink to='/dashboard/payment-history' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Payment History</NavLink>
+                                    </li>
+                                </>
+                            }
+                            {/* Dashboard menu for admin */}
+                            {level == 'admin' &&
+                                <>
+                                    <li className="flex items-center border-b-4 border-slate-900">
+                                        <NavLink to='/dashboard/admin-home' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Admin Home</NavLink>
+                                    </li>
+                                    <li className="flex items-center border-b-4 border-slate-900">
+                                        <NavLink to='/dashboard/manage-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Manage Classes</NavLink>
+                                    </li>
+                                    <li className="flex items-center border-b-4 border-slate-900">
+                                        <NavLink to='/dashboard/manage-user' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Manage Users</NavLink>
+                                    </li>
+                                </>
+                            }
+                            {/* Dashboard menu for Instructor */}
+                            {level == 'instructor' &&
+                                <>
+                                    <li className="flex items-center border-b-4 border-slate-900">
+                                        <NavLink to='/dashboard/instructor-home' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Instructor Home</NavLink>
+                                    </li>
+                                    <li className="flex items-center border-b-4 border-slate-900">
+                                        <NavLink to='/dashboard/add-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>Add a Class</NavLink>
+                                    </li>
+                                    <li className="flex items-center border-b-4 border-slate-900">
+                                        <NavLink to='/dashboard/my-class' className={({ isActive }) => (isActive ? 'd-active' : 'd-default')}>My Classes</NavLink>
+                                    </li>
+                                </>
+                            }
+                        </ul>
                         <div className="divider"></div>
                         <div>
                             <button
@@ -119,14 +135,14 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                <div className="w-10/12 ms-64 pr-8">
+                <div className="w-10/12 absolute right-0">
                     <div className="pt-8">
                         <Outlet></Outlet>
                     </div>
                 </div>
 
             </div >
-        </>
+        </div>
     );
 };
 
