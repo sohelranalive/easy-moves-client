@@ -31,7 +31,7 @@ const PopularInstructor = () => {
                             instructor={instructor}></PopularInstructorCard>)
                     }
                 </div>
-                <div className="text-center mt-12 pb-12">
+                <div className="text-center mt-12">
                     <Link to='/instructors' className="px-3 rounded-lg hover:bg-slate-900 py-3 bg-slate-800 text-white">See All Instructors</Link>
                 </div>
             </Container>
