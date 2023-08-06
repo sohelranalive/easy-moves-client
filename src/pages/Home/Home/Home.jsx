@@ -3,6 +3,7 @@ import Banner from "../Banner/Banner";
 import Features from "../Features/Features";
 import PopularClass from "../PopularClass/PopularClass";
 import PopularInstructor from "../PopularInstructor/PopularInstructor";
+import Statistics from "../Statistics/Statistics";
 
 const Home = () => {
     return (
@@ -12,6 +13,7 @@ const Home = () => {
             <PopularClass></PopularClass>
             <PopularInstructor></PopularInstructor>
             <Association></Association>
+            <Statistics></Statistics>
         </div>
     );
 };
