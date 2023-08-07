@@ -64,7 +64,7 @@ const SingleUserData = ({ singleUser }) => {
             </td>
             <td>{name}</td>
             <td>{currentStatus}</td>
-            <td className="space-x-4 text-center">
+            <td className="md:space-x-4 space-x-0 space-y-2 md:space-y-0 text-center">
                 {currentStatus == 'Admin' && <>
                     <button disabled className="btn btn-primary btn-sm">Make Admin</button>
                     <button disabled className="btn btn-primary btn-sm">Make Instructor</button>

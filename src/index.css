@@ -49,3 +49,15 @@
     display: inline-block;
   }
 }
+
+.floating-div {
+  position: fixed;
+  top: 50%;
+  right: 0px;
+  background-color: #0F172A;
+  padding: 10px;
+  border: 1px solid #ccc;
+  transform: translate(0, -50%);
+  z-index: 9999;
+  color: white;
+}

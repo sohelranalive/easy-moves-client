@@ -13,7 +13,7 @@ const UserEnrolledClass = () => {
             <h1 className="text-3xl text-center underline">Your All Enrolled Classes</h1>
             <br />
             <div className="mt-8">
-                <div className="grid grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {enrolledClasses?.map(enrolledClass => <EnrolledClassCard
                         key={enrolledClass._id}
                         enrolledClass={enrolledClass}>

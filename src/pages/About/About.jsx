@@ -9,7 +9,7 @@ const About = () => {
                 <h1 className="text-2xl">We have variety of classes, Choose classes as per your interest</h1>
             </div>
             <Container>
-                <div className="py-12">
+                <div className="py-12 px-4 md:px-0">
                     <h1 className="text-3xl font-bold uppercase">About Us - EasyMoves</h1>
                     <br />
                     <p className="text-justify">Welcome to EasyMoves Studios, your ultimate destination for a dynamic and inspiring dance experience! We are thrilled to introduce a one-of-a-kind platform designed especially for students like you to make the most out of your summer vacation by learning and mastering the art of dance.</p>

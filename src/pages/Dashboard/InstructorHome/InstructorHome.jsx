@@ -19,7 +19,7 @@ const InstructorHome = () => {
         <div className="w-10/12 mx-auto">
             <h1 className="text-3xl text-center underline">Welcome to Dashboard</h1>
             <br />
-            <div className="grid grid-cols-3 mt-8 gap-4 text-white">
+            <div className="grid md:grid-cols-3 grid-cols-1 mt-8 gap-4 text-white">
                 <Link to='/dashboard/my-class'>
                     <div className="bg-lime-400 rounded-lg p-8 h-full">
                         <h2 className="text-2xl">Total Added Class</h2>
