@@ -13,19 +13,19 @@ const Statistics = () => {
                     <div className="md:flex md:items-center md:justify-between py-4 space-y-4 md:space-y-0">
                         <div className="text-center">
                             <p className="text-4xl font-semibold text-slate-900">99 %</p>
-                            <p>Customer Satisfaction</p>
+                            <p>Students Satisfaction</p>
                         </div>
                         <div className="text-center">
                             <p className="text-4xl font-semibold text-slate-900">15 K</p>
-                            <p>Online Patients</p>
+                            <p>Graduated Students</p>
                         </div>
                         <div className="text-center">
                             <p className="text-4xl font-semibold text-slate-900">12 K</p>
-                            <p>Patients Recovered</p>
+                            <p>Enrolled Student</p>
                         </div>
                         <div className="text-center">
                             <p className="text-4xl font-semibold text-slate-900">85%</p>
-                            <p>Repeat Customer</p>
+                            <p>Referred Students</p>
                         </div>
                         <div className="text-center">
                             <p className="text-4xl font-semibold text-slate-900">240 %</p>

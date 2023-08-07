@@ -22,6 +22,7 @@ const Heading = () => {
         <li><NavLink to='/' className={({ isActive }) => (isActive ? 'b-active' : 'b-default')}>Home</NavLink></li>
         <li><NavLink to='/instructors' className={({ isActive }) => (isActive ? 'b-active' : 'b-default')}>Instructors</NavLink></li>
         <li><NavLink to='/classes' className={({ isActive }) => (isActive ? 'b-active' : 'b-default')}>Classes</NavLink></li>
+        <li><NavLink to='/about' className={({ isActive }) => (isActive ? 'b-active' : 'b-default')}>About</NavLink></li>
         <li><NavLink to='/dashboard' className={({ isActive }) => (isActive ? 'b-active' : 'b-default')}>Dashboard</NavLink></li>
         <li>
             {user

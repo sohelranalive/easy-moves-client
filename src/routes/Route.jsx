@@ -22,6 +22,7 @@ import Classes from "../pages/Classes/Classes";
 import Payment from "../pages/Dashboard/Payments/Payment";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import UserPayments from "../pages/Dashboard/UserPayments/UserPayments";
+import About from "../pages/About/About";
 
 const router = createBrowserRouter([
     {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
             {
                 path: '/classes',
                 element: <Classes></Classes>
+            },
+            {
+                path: '/about',
+                element: <About></About>
             },
             {
                 path: '/login',
